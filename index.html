@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mihirsinh Chavda — Full-Stack + AI Engineer</title>
-<meta name="description" content="Full-stack + AI engineer. I ship AI products end to end — rewind, Boostlane, AgentLens, shiplog. Open source, LLM pipelines, TypeScript.">
+<title>Mihirsinh Chavda · Full-Stack + AI Engineer</title>
+<meta name="description" content="Full-stack + AI engineer. I ship AI products end to end: rewind, Boostlane, AgentLens, shiplog. Open source, LLM pipelines, TypeScript.">
 <link rel="canonical" href="https://mihirsinhchavda.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mihirsinh Chavda — Full-Stack + AI Engineer">
-<meta property="og:description" content="I ship AI products end to end. rewind · Boostlane · AgentLens · shiplog.">
+<meta property="og:title" content="Mihirsinh Chavda · Full-Stack + AI Engineer">
+<meta property="og:description" content="I ship AI products end to end. rewind, Boostlane, AgentLens, shiplog.">
 <meta property="og:url" content="https://mihirsinhchavda.com/">
 <meta property="og:image" content="https://mihirsinhchavda.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<canvas id="dither" aria-hidden="true"></canvas>
 <header class="nav">
   <a class="wordmark" href="#top">mihirsinh chavda</a>
   <div class="nav-right">
@@ -76,7 +77,7 @@
       <li><a class="row" href="https://useboostlane.com" data-preview="assets/previews/boostlane.jpg">
         <img class="row-thumb" src="assets/previews/boostlane.jpg" alt="Boostlane product" width="720" height="450" loading="lazy">
         <div class="row-main"><h2>Boostlane</h2>
-          <p>Distribution engine for founders — a multi-stage LLM pipeline that learns each user's voice. 50+ users.</p>
+          <p>Distribution engine for founders. A multi-stage LLM pipeline that learns each user's voice. 50+ users.</p>
           <p class="tags">Next.js · LLM pipeline · Embeddings</p>
         </div><span class="arrow">↗</span></a></li>
       <li><a class="row" href="https://github.com/mihhhir08/AgentLens" data-preview="assets/previews/agentlens.jpg">
@@ -96,10 +97,10 @@
   </section>
   <section id="about">
     <p class="label">about</p>
-    <p class="about-text">CS grad who'd rather ship than talk about shipping. I've built production features
-    on a contract team — semantic resume-matching that replaced keyword filters — delivered full-stack
-    products for early-stage founders, and now spend most of my time on open-source dev tools for the
-    LLM era. I care about the unglamorous parts: determinism, observability, and tests that catch real bugs.</p>
+    <p class="about-text">CS grad who'd rather ship than talk about shipping. I've shipped semantic
+    resume-matching on a contract team, built full-stack products for early-stage founders, and now
+    spend most of my time on open-source dev tools for the LLM era. I care about the unglamorous
+    parts: determinism, observability, and tests that catch real bugs.</p>
     <p class="skills">TypeScript · React · Next.js · Node · Python · PostgreSQL · Supabase · MongoDB · LLM APIs · RAG · embeddings</p>
   </section>
 
@@ -116,10 +117,32 @@
   </section>
 </main>
 <footer class="foot">
-  <span>© Mihirsinh Chavda</span>
-  <span id="visitors">…</span>
-  <span>made from scratch, no templates</span>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>MIHIRSINH CHAVDA · FULL-STACK + AI ENGINEER · OPEN SOURCE · </span><span>MIHIRSINH CHAVDA · FULL-STACK + AI ENGINEER · OPEN SOURCE · </span>
+    </div>
+  </div>
+  <div class="foot-meta">
+    <span>© Mihirsinh Chavda</span>
+    <span id="visitors" class="counter">0 visitors</span>
+    <a class="top-link" href="#top">back to top ↑</a>
+  </div>
 </footer>
+<div id="cat" aria-hidden="true">
+  <div class="cat-flip">
+    <svg class="cat-body" width="46" height="34" viewBox="0 0 46 34">
+      <path class="cat-tail" d="M12 26 Q3 25 5 15" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <ellipse cx="23" cy="26" rx="13" ry="7.5"/>
+        <circle cx="34" cy="15" r="7.5"/>
+        <path d="M28.5 11 L29 3.5 L34 8.5 Z"/>
+        <path d="M39.5 11 L39 3.5 L34 8.5 Z"/>
+      </g>
+      <circle class="eye" cx="32" cy="14.5" r="1.4" fill="var(--bg)"/>
+      <circle class="eye" cx="37" cy="14.5" r="1.4" fill="var(--bg)"/>
+    </svg>
+  </div>
+</div>
 <script src="main.js"></script>
 </body>
 </html>
