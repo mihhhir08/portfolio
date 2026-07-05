@@ -59,3 +59,14 @@
       });
   });
 })();
+(function () {
+  var els = document.querySelectorAll("#work .work li, #about .about-text, #about .skills, #contact .email, #contact .contact-links");
+  if (!("IntersectionObserver" in window)) return;
+  els.forEach(function (el) { el.classList.add("reveal"); });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+})();
