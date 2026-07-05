@@ -38,27 +38,39 @@
   });
 })();
 (function () {
-  var LAUNCH = Date.UTC(2026, 6, 5);
-  var days = Math.max(0, Math.floor((Date.now() - LAUNCH) / 864e5));
-  var count = 312 + days * 7 + (days % 4) * 2 + 1;
   var el = document.getElementById("visitors");
-  function render(n) { el.textContent = n.toLocaleString("en-US") + " visitors"; }
-  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    render(count); return;
+  function render(n) { el.textContent = "you are visitor #" + n.toLocaleString("en-US"); }
+  function show(count) {
+    if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      render(count); return;
+    }
+    render(0);
+    var done = false;
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting || done) return;
+      done = true; io.disconnect();
+      var t0 = performance.now();
+      requestAnimationFrame(function tick(t) {
+        var p = Math.min((t - t0) / 1200, 1);
+        render(Math.round(count * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
   }
-  render(0);
-  var done = false;
-  var io = new IntersectionObserver(function (entries) {
-    if (!entries[0].isIntersecting || done) return;
-    done = true; io.disconnect();
-    var t0 = performance.now();
-    requestAnimationFrame(function tick(t) {
-      var p = Math.min((t - t0) / 1200, 1);
-      render(Math.round(count * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(tick);
-    });
-  }, { threshold: 0.4 });
-  io.observe(el);
+  function fallback() {
+    var days = Math.max(0, Math.floor((Date.now() - Date.UTC(2026, 6, 5)) / 864e5));
+    return 312 + days * 7 + (days % 4) * 2 + 1;
+  }
+  var seen = false;
+  try { seen = localStorage.getItem("visited") === "1"; } catch (e) {}
+  fetch("https://api.counterapi.dev/v1/mihirsinhchavda/portfolio" + (seen ? "" : "/up"))
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      try { localStorage.setItem("visited", "1"); } catch (e) {}
+      show(312 + (d.count || 0));
+    })
+    .catch(function () { show(fallback()); });
 })();
 (function () {
   var btn = document.getElementById("copy-email");
@@ -253,23 +265,237 @@ void main(){
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var cat = document.getElementById("cat");
   var flip = cat.querySelector(".cat-flip");
-  var x = -60, tx = 40, raf = null;
+  var cv = cat.querySelector("canvas");
+  var ctx = cv.getContext("2d");
+  var S = 3;
+  var HEAD = [
+    ".........X....X.",
+    ".........XP..PX.",
+    ".........XXXXXX.",
+    "X........XEXXEX.",
+    "X........XXXXXP."
+  ];
+  var WALK1 = HEAD.concat([
+    ".XXXXXXXXXXXXX..",
+    "..XXXXXXXXXXX...",
+    "..XXXXXXXXXX....",
+    "...XX....XX.....",
+    "...XX....XX....."
+  ]);
+  var WALK2 = HEAD.concat([
+    ".XXXXXXXXXXXXX..",
+    "..XXXXXXXXXXX...",
+    "..XXXXXXXXXX....",
+    "..XX......XX....",
+    ".XX........XX..."
+  ]);
+  var SIT = HEAD.concat([
+    "....XXXXXXXXXX..",
+    "X..XXXXXXXXXXX..",
+    "X..XXXXXXXXXX...",
+    ".XXXXXXXXXXXX...",
+    "..XXXXXXXXXX...."
+  ]);
+  var pal = {};
+  function loadPal() {
+    var cs = getComputedStyle(document.documentElement);
+    pal.X = cs.getPropertyValue("--dim").trim();
+    pal.P = cs.getPropertyValue("--accent").trim();
+    pal.E = cs.getPropertyValue("--bg").trim();
+  }
+  var cur = SIT, blinkOn = false;
+  function draw(frame, blink) {
+    cur = frame; blinkOn = blink;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    for (var r = 0; r < frame.length; r++) {
+      for (var c = 0; c < frame[r].length; c++) {
+        var ch = frame[r][c];
+        if (ch === ".") continue;
+        ctx.fillStyle = pal[ch === "E" && blink ? "X" : ch];
+        ctx.fillRect(c * S, r * S, S, S);
+      }
+    }
+  }
+  loadPal();
+  draw(SIT, false);
+  new MutationObserver(function () { loadPal(); draw(cur, blinkOn); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  setInterval(function () {
+    draw(cur, true);
+    setTimeout(function () { draw(cur, false); }, 160);
+  }, 4200);
+  var x = -60, tx = 40, raf = null, lastSwap = 0, wf = 0;
   cat.style.transform = "translateX(" + x + "px)";
   addEventListener("pointermove", function (e) {
     tx = Math.min(Math.max(e.clientX - 54, 6), innerWidth - 58);
     if (!raf) raf = requestAnimationFrame(step);
   });
-  function step() {
+  function step(t) {
     var d = tx - x;
     x += d * 0.055;
     cat.style.transform = "translateX(" + x + "px)";
     if (Math.abs(d) > 6) flip.style.transform = d < 0 ? "scaleX(-1)" : "scaleX(1)";
     if (Math.abs(d) > 1) {
-      cat.classList.add("walk");
+      if (t - lastSwap > 130) { wf = 1 - wf; lastSwap = t; draw(wf ? WALK2 : WALK1, blinkOn); }
       raf = requestAnimationFrame(step);
     } else {
-      cat.classList.remove("walk");
+      if (cur !== SIT) draw(SIT, blinkOn);
       raf = null;
     }
   }
+})();
+(function () {
+  var pal = document.getElementById("palette");
+  var input = document.getElementById("pal-input");
+  var list = document.getElementById("pal-list");
+  var cmds = [
+    { n: "Copy email", h: "mihhhir08@gmail.com", run: function () { document.getElementById("copy-email").click(); location.hash = "#contact"; } },
+    { n: "Download resume", h: "pdf", run: function () { var a = document.createElement("a"); a.href = "assets/resume.pdf"; a.download = ""; a.click(); } },
+    { n: "Open terminal", h: "`", run: function () { document.dispatchEvent(new CustomEvent("open-term")); } },
+    { n: "Toggle theme", h: "dark / light", run: function () { document.getElementById("theme-toggle").click(); } },
+    { n: "Go to work", h: "#work", run: function () { location.hash = "#work"; } },
+    { n: "Go to about", h: "#about", run: function () { location.hash = "#about"; } },
+    { n: "Go to contact", h: "#contact", run: function () { location.hash = "#contact"; } },
+    { n: "Open GitHub", h: "↗", run: function () { window.open("https://github.com/mihhhir08", "_blank"); } },
+    { n: "Open X", h: "↗", run: function () { window.open("https://x.com/Mihirxbuilding", "_blank"); } },
+    { n: "Open LinkedIn", h: "↗", run: function () { window.open("https://www.linkedin.com/in/mihirsinh-chavda-7115b922b/", "_blank"); } },
+    { n: "Open rewind", h: "↗", run: function () { window.open("https://rewind-beta.vercel.app", "_blank"); } },
+    { n: "Open Boostlane", h: "↗", run: function () { window.open("https://useboostlane.com", "_blank"); } },
+    { n: "Open AgentLens", h: "↗", run: function () { window.open("https://github.com/mihhhir08/AgentLens", "_blank"); } },
+    { n: "Open shiplog", h: "↗", run: function () { window.open("https://github.com/mihhhir08/shiplog", "_blank"); } }
+  ];
+  var shown = [], sel = 0;
+  function render() {
+    var q = input.value.toLowerCase();
+    shown = cmds.filter(function (c) { return c.n.toLowerCase().indexOf(q) !== -1; });
+    sel = Math.min(sel, Math.max(shown.length - 1, 0));
+    list.innerHTML = "";
+    shown.forEach(function (c, i) {
+      var li = document.createElement("li");
+      if (i === sel) li.className = "sel";
+      var name = document.createElement("span");
+      name.textContent = c.n;
+      var hint = document.createElement("span");
+      hint.className = "hint";
+      hint.textContent = c.h;
+      li.appendChild(name); li.appendChild(hint);
+      li.addEventListener("click", function () { close(); c.run(); });
+      li.addEventListener("mousemove", function () { if (sel !== i) { sel = i; render(); } });
+      list.appendChild(li);
+    });
+  }
+  function open() { pal.hidden = false; input.value = ""; sel = 0; render(); input.focus(); }
+  function close() { pal.hidden = true; }
+  document.getElementById("pal-open").addEventListener("click", open);
+  pal.addEventListener("mousedown", function (e) { if (e.target === pal) close(); });
+  input.addEventListener("input", function () { sel = 0; render(); });
+  document.addEventListener("keydown", function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      pal.hidden ? open() : close();
+      return;
+    }
+    if (pal.hidden) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowDown") { e.preventDefault(); sel = (sel + 1) % shown.length; render(); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = (sel - 1 + shown.length) % shown.length; render(); }
+    else if (e.key === "Enter" && shown[sel]) { close(); shown[sel].run(); }
+  });
+})();
+(function () {
+  var term = document.getElementById("term");
+  var out = document.getElementById("term-out");
+  var input = document.getElementById("term-input");
+  var projects = {
+    rewind: "https://rewind-beta.vercel.app",
+    boostlane: "https://useboostlane.com",
+    agentlens: "https://github.com/mihhhir08/AgentLens",
+    shiplog: "https://github.com/mihhhir08/shiplog"
+  };
+  function print(text, accent) {
+    var div = document.createElement("div");
+    if (accent) div.className = "t-accent";
+    div.textContent = text;
+    out.appendChild(div);
+    out.scrollTop = out.scrollHeight;
+  }
+  function open() {
+    term.hidden = false;
+    if (!out.childNodes.length) {
+      print("mihir@portfolio — type `help`", true);
+    }
+    input.focus();
+  }
+  function close() { term.hidden = true; }
+  function exec(cmd) {
+    print("$ " + cmd);
+    var parts = cmd.trim().split(/\s+/);
+    var name = parts[0].toLowerCase();
+    if (!name) return;
+    if (name === "help") {
+      print("help          this list\nls            list projects\nopen <name>   open a project\nwhoami        about me\nresume        download resume\ntheme         toggle theme\nclear         clear screen\nexit          close terminal");
+    } else if (name === "ls") {
+      print(Object.keys(projects).join("  "));
+    } else if (name === "open") {
+      var p = (parts[1] || "").toLowerCase();
+      if (projects[p]) { print("opening " + p + "…", true); window.open(projects[p], "_blank"); }
+      else print("unknown project. try: " + Object.keys(projects).join(", "));
+    } else if (name === "whoami") {
+      print("Mihirsinh Chavda — full-stack + AI engineer.\nI ship AI products end to end.");
+    } else if (name === "resume") {
+      var a = document.createElement("a"); a.href = "assets/resume.pdf"; a.download = ""; a.click();
+      print("downloading resume.pdf…", true);
+    } else if (name === "theme") {
+      document.getElementById("theme-toggle").click();
+      print("theme: " + document.documentElement.dataset.theme, true);
+    } else if (name === "clear") {
+      out.innerHTML = "";
+    } else if (name === "exit") {
+      close();
+    } else {
+      print("command not found: " + name + " (try `help`)");
+    }
+  }
+  document.addEventListener("open-term", open);
+  term.addEventListener("mousedown", function (e) { if (e.target === term) close(); });
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { exec(input.value); input.value = ""; }
+    else if (e.key === "Escape") close();
+    e.stopPropagation();
+  });
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target.tagName || "").toLowerCase();
+    if (e.key === "`" && tag !== "input" && tag !== "textarea") {
+      e.preventDefault();
+      term.hidden ? open() : close();
+    } else if (!term.hidden && e.key === "Escape") {
+      close();
+    }
+  });
+})();
+(function () {
+  var links = document.querySelectorAll(".nav-link");
+  if ("IntersectionObserver" in window && links.length) {
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute("href")] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var a = map["#" + en.target.id];
+        if (a) a.classList.toggle("active", en.isIntersecting);
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    ["work", "about", "contact"].forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) io.observe(s);
+    });
+  }
+  var bar = document.getElementById("nav-progress");
+  var raf = null;
+  function update() {
+    raf = null;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + "%";
+  }
+  addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  update();
 })();
