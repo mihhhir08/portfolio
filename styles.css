@@ -1,0 +1,49 @@
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --text: #f2f2f2; --dim: #a3a3a3; --faint: #6b6b6b;
+  --line: #232323; --card: #141414; --accent: #a3e635; --accent-ink: #101401;
+}
+:root[data-theme="light"] {
+  --bg: #fafaf7; --text: #141414; --dim: #52525b; --faint: #a1a1aa;
+  --line: #e4e4e0; --card: #ffffff; --accent: #4d7c0f; --accent-ink: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
+}
+h1, h2, .display { font-family: "Clash Display", ui-monospace, monospace; }
+a { color: inherit; text-decoration: none; }
+main, .nav, .foot { max-width: 1000px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+.nav {
+  position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between;
+  align-items: center; padding-top: 18px; padding-bottom: 18px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px);
+}
+.wordmark { font-size: 14px; font-weight: 700; letter-spacing: .5px; }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.nav-link { font-size: 13px; color: var(--dim); }
+.nav-link:hover { color: var(--text); }
+#theme-toggle {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line); background: none; color: var(--text); cursor: pointer;
+}
+#theme-toggle:hover { border-color: var(--faint); }
+:root[data-theme="dark"] .icon-sun { display: none; }
+:root[data-theme="light"] .icon-moon { display: none; }
+
+section { padding: 88px 0 0; }
+.label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); margin-bottom: 28px; }
+.label::before { content: "// "; color: var(--accent); }
+
+@media (max-width: 640px) {
+  .nav-link { display: none; }
+  section { padding-top: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
