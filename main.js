@@ -73,19 +73,7 @@
     .catch(function () { show(fallback()); });
 })();
 (function () {
-  var btn = document.getElementById("copy-email");
-  btn.addEventListener("click", function () {
-    var email = "mihhhir08@gmail.com";
-    (navigator.clipboard ? navigator.clipboard.writeText(email) : Promise.reject())
-      .catch(function () {})
-      .finally(function () {
-        btn.classList.add("did");
-        setTimeout(function () { btn.classList.remove("did"); }, 1600);
-      });
-  });
-})();
-(function () {
-  var els = document.querySelectorAll("#work .work li, #about .about-text, #about .skills, #contact .email, #contact .contact-links");
+  var els = document.querySelectorAll("#work .work li, #about .about-text, #about .skills, #contact .contact-head, #contact .contact-links");
   if (!("IntersectionObserver" in window)) return;
   els.forEach(function (el) { el.classList.add("reveal"); });
   var io = new IntersectionObserver(function (entries) {
@@ -349,7 +337,7 @@ void main(){
   var input = document.getElementById("pal-input");
   var list = document.getElementById("pal-list");
   var cmds = [
-    { n: "Copy email", h: "mihhhir08@gmail.com", run: function () { document.getElementById("copy-email").click(); location.hash = "#contact"; } },
+    { n: "Copy email", h: "mihhhir08@gmail.com", run: function () { if (navigator.clipboard) navigator.clipboard.writeText("mihhhir08@gmail.com"); } },
     { n: "Download resume", h: "pdf", run: function () { var a = document.createElement("a"); a.href = "assets/resume.pdf"; a.download = ""; a.click(); } },
     { n: "Open terminal", h: "`", run: function () { document.dispatchEvent(new CustomEvent("open-term")); } },
     { n: "Toggle theme", h: "dark / light", run: function () { document.getElementById("theme-toggle").click(); } },
