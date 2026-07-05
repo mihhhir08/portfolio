@@ -386,7 +386,6 @@ void main(){
   }
   function open() { pal.hidden = false; input.value = ""; sel = 0; render(); input.focus(); }
   function close() { pal.hidden = true; }
-  document.getElementById("pal-open").addEventListener("click", open);
   pal.addEventListener("mousedown", function (e) { if (e.target === pal) close(); });
   input.addEventListener("input", function () { sel = 0; render(); });
   document.addEventListener("keydown", function (e) {
