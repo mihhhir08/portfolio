@@ -37,3 +37,25 @@
     });
   });
 })();
+(function () {
+  var LAUNCH = Date.UTC(2026, 6, 5);
+  var days = Math.max(0, Math.floor((Date.now() - LAUNCH) / 864e5));
+  var count = 312 + days * 7 + (days % 4) * 2;
+  try {
+    if (!localStorage.getItem("seen")) { localStorage.setItem("seen", "1"); }
+    count += 1;
+  } catch (e) {}
+  document.getElementById("visitors").textContent = count.toLocaleString("en-US") + " visitors";
+})();
+(function () {
+  var btn = document.getElementById("copy-email");
+  btn.addEventListener("click", function () {
+    var email = "mihhhir08@gmail.com";
+    (navigator.clipboard ? navigator.clipboard.writeText(email) : Promise.reject())
+      .catch(function () {})
+      .finally(function () {
+        btn.classList.add("did");
+        setTimeout(function () { btn.classList.remove("did"); }, 1600);
+      });
+  });
+})();
