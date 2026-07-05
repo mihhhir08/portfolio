@@ -405,7 +405,7 @@ void main(){
       if (projects[p]) { print("opening " + p + "…", true); window.open(projects[p], "_blank"); }
       else print("unknown project. try: " + Object.keys(projects).join(", "));
     } else if (name === "whoami") {
-      print("Mihirsinh Chavda — full-stack + AI engineer.\nI ship AI products end to end.");
+      print("Mihirsinh Chavda · software engineer.\nI ship AI products end to end.");
     } else if (name === "resume") {
       var a = document.createElement("a"); a.href = "assets/resume.pdf"; a.download = ""; a.click();
       print("downloading resume.pdf…", true);
