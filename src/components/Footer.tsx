@@ -58,7 +58,7 @@ export default function Footer() {
           x="500"
           y="145"
           textAnchor="middle"
-          className="fill-fg font-display opacity-[0.05]"
+          className="fill-fg font-display opacity-[0.08]"
           style={{ fontSize: 172, fontWeight: 700, letterSpacing: "-0.02em" }}
         >
           MIHIRSINH

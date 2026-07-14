@@ -1,9 +1,7 @@
 import Preloader from "@/components/Preloader";
 import Frame from "@/components/Frame";
 import BentoCard from "@/components/BentoCard";
-import ThemeToggle from "@/components/ThemeToggle";
 import HeroCard from "@/components/cards/HeroCard";
-import PhotoCard from "@/components/cards/PhotoCard";
 import MapCard from "@/components/cards/MapCard";
 import StackCard from "@/components/cards/StackCard";
 import WorkSection from "@/components/cards/WorkSection";
@@ -18,33 +16,24 @@ import TerminalEgg from "@/components/TerminalEgg";
 export default function Home() {
   return (
     <Preloader>
-      <header className="mx-auto flex w-[calc(100%-32px)] max-w-[840px] items-center justify-between pt-6">
-        <a href="#top" className="font-display text-base font-semibold">
-          Mihirsinh Chavda
-        </a>
-        <ThemeToggle />
-      </header>
       <Frame>
         <div id="top" className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <BentoCard delay={0} className="md:col-span-2">
+          <BentoCard delay={0} className="md:col-span-3">
             <HeroCard />
           </BentoCard>
-          <BentoCard delay={0.06}>
-            <PhotoCard />
-          </BentoCard>
-          <BentoCard delay={0.12}>
+          <BentoCard delay={0.08}>
             <MapCard />
           </BentoCard>
-          <BentoCard delay={0.18} className="md:col-span-2">
+          <BentoCard delay={0.14} className="md:col-span-2">
             <StackCard />
           </BentoCard>
-          <BentoCard delay={0.24} id="work" className="md:col-span-3 cv-auto">
+          <BentoCard delay={0.2} id="work" className="md:col-span-3 cv-auto">
             <WorkSection />
           </BentoCard>
-          <BentoCard delay={0.3} id="about" className="md:col-span-2 cv-auto">
+          <BentoCard delay={0.26} id="about" className="md:col-span-2 cv-auto">
             <AboutCard />
           </BentoCard>
-          <BentoCard delay={0.36} id="contact" className="cv-auto">
+          <BentoCard delay={0.32} id="contact" className="cv-auto">
             <ContactCard />
           </BentoCard>
         </div>

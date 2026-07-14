@@ -1,5 +1,9 @@
 'use client';
 
+// Based on oneko.js by adryd (https://github.com/adryd325/oneko.js),
+// MIT License, Copyright (c) 2021 adryd. Sprite derives from Neko
+// (Naoshi Watanabe, 1989), distributed as freeware for decades.
+
 import { useEffect } from 'react';
 
 const Oneko = () => {

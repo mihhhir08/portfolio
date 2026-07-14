@@ -17,7 +17,7 @@ const STACK = [
 
 export default function StackCard() {
   return (
-    <div>
+    <div className="flex h-full flex-col justify-center">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">
         stack
       </p>

@@ -24,6 +24,7 @@ export default function BentoCard({
       id={id}
       initial={{ opacity: 0, y: 20 }}
       animate={ready ? { opacity: 1, y: 0 } : {}}
+      whileHover={{ y: -3 }}
       transition={{ duration: 0.5, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={`entrance group relative overflow-hidden rounded-xl border border-hairline bg-surface p-6 transition-colors duration-300 hover:border-hairline-bright ${className}`}
     >

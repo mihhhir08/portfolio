@@ -107,7 +107,7 @@ export default function DitherBackground({ pixelSizeRef }: Props) {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 -z-10 h-full w-full"
+      className="dither-canvas fixed inset-0 -z-10 h-full w-full"
     />
   );
 }

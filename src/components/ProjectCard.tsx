@@ -62,18 +62,18 @@ export default function ProjectCard({ project }: { project: Project }) {
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-slide text-muted hover:text-fg"
+          className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
         >
-          visit ↗
+          visit <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
         </a>
         {project.repo && (
           <a
             href={`https://github.com/${project.repo}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-slide text-muted hover:text-fg"
+            className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
           >
-            source ↗
+            source <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
           </a>
         )}
         {project.extraLinks?.map((l) => (
@@ -82,9 +82,12 @@ export default function ProjectCard({ project }: { project: Project }) {
             href={l.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-slide text-muted hover:text-fg"
+            className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
           >
-            {l.label} ↗
+            {l.label}{" "}
+            <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">
+              ↗
+            </span>
           </a>
         ))}
       </div>

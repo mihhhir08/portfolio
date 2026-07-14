@@ -14,7 +14,7 @@ function Tick({ className }: { className: string }) {
 
 export default function Frame({ children }: { children: ReactNode }) {
   return (
-    <div className="relative mx-auto my-8 w-[calc(100%-32px)] max-w-[840px] md:my-16">
+    <div className="relative mx-auto my-8 w-[calc(100%-32px)] max-w-[1080px] md:my-16">
       <Tick className="-top-1 -left-1 border-t border-l" />
       <Tick className="-top-1 -right-1 border-t border-r" />
       <Tick className="-bottom-1 -left-1 border-b border-l" />

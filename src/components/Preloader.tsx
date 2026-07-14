@@ -54,6 +54,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
     }
 
     pixelRef.current = PIXEL_FROM;
+    document.documentElement.setAttribute("data-preloading", "1");
     let raf: number;
     const t0 = performance.now();
     const tick = (t: number) => {
@@ -65,6 +66,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
       if (p < 1) {
         raf = requestAnimationFrame(tick);
       } else {
+        document.documentElement.removeAttribute("data-preloading");
         setOverlay(false);
       }
     };
