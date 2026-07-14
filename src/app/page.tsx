@@ -12,6 +12,8 @@ import ContactCard from "@/components/cards/ContactCard";
 import Taskbar from "@/components/Taskbar";
 import Footer from "@/components/Footer";
 import OnekoLazy from "@/components/OnekoLazy";
+import CommandPalette from "@/components/CommandPalette";
+import TerminalEgg from "@/components/TerminalEgg";
 
 export default function Home() {
   return (
@@ -50,6 +52,8 @@ export default function Home() {
       <Footer />
       <Taskbar />
       <OnekoLazy />
+      <CommandPalette />
+      <TerminalEgg />
     </Preloader>
   );
 }
