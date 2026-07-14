@@ -9,6 +9,7 @@ import StackCard from "@/components/cards/StackCard";
 import WorkSection from "@/components/cards/WorkSection";
 import AboutCard from "@/components/cards/AboutCard";
 import ContactCard from "@/components/cards/ContactCard";
+import Taskbar from "@/components/Taskbar";
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
           </BentoCard>
         </div>
       </Frame>
+      <Taskbar />
     </Preloader>
   );
 }
