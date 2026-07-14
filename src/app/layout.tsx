@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+
+const clashDisplay = localFont({
+  src: [
+    { path: "../fonts/clash-500.woff2", weight: "500" },
+    { path: "../fonts/clash-600.woff2", weight: "600" },
+    { path: "../fonts/clash-700.woff2", weight: "700" },
+  ],
+  variable: "--font-clash",
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,22 +69,13 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${clashDisplay.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: personLd }}
-        />
-        <link
-          rel="preload"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap"
         />
       </head>
       <body className="min-h-full flex flex-col">

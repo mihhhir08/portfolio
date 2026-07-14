@@ -34,6 +34,9 @@ export default function Preloader({ children }: { children: ReactNode }) {
       /* private mode */
     }
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) skip = true;
+    // Phones skip the resolve — content paints immediately for the
+    // link-tap-from-Twitter crowd; desktop gets the full entrance.
+    if (matchMedia("(pointer: coarse)").matches) skip = true;
 
     if (skip) {
       pixelRef.current = PIXEL_TO;
@@ -76,7 +79,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
       {overlay && (
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center"
+          className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center [@media(pointer:coarse)]:hidden"
         >
           <span
             className={`font-display text-4xl font-semibold tracking-[0.2em] uppercase transition-all duration-500 ${
@@ -88,7 +91,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
         </div>
       )}
       <div
-        className={`transition-opacity duration-500 ${
+        className={`entrance transition-opacity duration-500 ${
           ready ? "opacity-100" : "opacity-0"
         }`}
       >

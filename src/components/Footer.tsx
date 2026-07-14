@@ -49,12 +49,21 @@ export default function Footer() {
           </span>
         </div>
       </div>
-      <p
+      <svg
         aria-hidden="true"
-        className="pointer-events-none mt-8 -mb-[0.24em] text-center font-display text-[clamp(2.5rem,17vw,10rem)] leading-[0.75] font-bold tracking-tight text-fg opacity-[0.05] select-none"
+        viewBox="0 0 1000 150"
+        className="pointer-events-none mx-auto mt-8 -mb-[6%] block w-full max-w-[1100px] select-none md:-mb-[4%]"
       >
-        MIHIRSINH
-      </p>
+        <text
+          x="500"
+          y="145"
+          textAnchor="middle"
+          className="fill-fg font-display opacity-[0.05]"
+          style={{ fontSize: 172, fontWeight: 700, letterSpacing: "-0.02em" }}
+        >
+          MIHIRSINH
+        </text>
+      </svg>
     </footer>
   );
 }

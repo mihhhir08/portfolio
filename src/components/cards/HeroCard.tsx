@@ -20,7 +20,7 @@ export default function HeroCard() {
           {HEADLINE.map((line, i) => (
             <span key={line} className="block overflow-hidden">
               <motion.span
-                className="block"
+                className="entrance block"
                 initial={{ y: "110%" }}
                 animate={ready ? { y: 0 } : {}}
                 transition={{
