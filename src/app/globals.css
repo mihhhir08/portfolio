@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  Design system — portfolio v2
+  Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 only.
+  Color rule: ONE accent (hot pink). Green = status only. Nothing else.
+  Hierarchy: hairline 1px borders, no shadows. Size + space, not boxes.
+*/
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: "Clash Display", var(--font-geist-sans), sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-bg: var(--t-bg);
+  --color-surface: var(--t-surface);
+  --color-fg: var(--t-fg);
+  --color-muted: var(--t-muted);
+  --color-hairline: var(--t-hairline);
+  --color-hairline-bright: var(--t-hairline-bright);
+  --color-accent: var(--t-accent);
+  --color-status: #22c55e;
+  --color-status-building: #eab308;
+  --color-status-archived: #ef4444;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root,
+[data-theme="dark"] {
+  --t-bg: #0a0a0a;
+  --t-surface: rgba(16, 16, 16, 0.82);
+  --t-fg: #ededed;
+  --t-muted: #8f8f8f;
+  --t-hairline: rgba(255, 255, 255, 0.08);
+  --t-hairline-bright: rgba(255, 255, 255, 0.18);
+  --t-accent: #f0347f;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --t-bg: #fafaf7;
+  --t-surface: rgba(255, 255, 255, 0.82);
+  --t-fg: #171717;
+  --t-muted: #6b6b6b;
+  --t-hairline: rgba(0, 0, 0, 0.09);
+  --t-hairline-bright: rgba(0, 0, 0, 0.2);
+  --t-accent: #be1860;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--t-bg);
+  color: var(--t-fg);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--t-accent);
+  color: #fff;
+}
+
+/* Theme toggle icon cross-fade + rotate */
+.icon-sun,
+.icon-moon {
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+[data-theme="dark"] .icon-sun,
+[data-theme="light"] .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+  position: absolute;
+}
+[data-theme="dark"] .icon-moon,
+[data-theme="light"] .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Link underline slide-in */
+.link-slide {
+  background-image: linear-gradient(var(--t-accent), var(--t-accent));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
+}
+.link-slide:hover {
+  background-size: 100% 1px;
+}
+
+/* Below-fold rendering hint */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
