@@ -3,6 +3,7 @@ import Frame from "@/components/Frame";
 import BentoCard from "@/components/BentoCard";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeroCard from "@/components/cards/HeroCard";
+import PhotoCard from "@/components/cards/PhotoCard";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
             <HeroCard />
           </BentoCard>
           <BentoCard delay={0.06}>
-            <p className="text-muted">photo — Task 7</p>
+            <PhotoCard />
           </BentoCard>
           <BentoCard delay={0.12}>
             <p className="text-muted">map — Task 8</p>
