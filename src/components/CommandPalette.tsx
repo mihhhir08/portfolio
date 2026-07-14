@@ -41,7 +41,6 @@ function buildCommands(): Command[] {
       },
     },
     { n: "Go to work", h: "#work", run: () => (location.hash = "#work") },
-    { n: "Go to about", h: "#about", run: () => (location.hash = "#about") },
     {
       n: "Go to contact",
       h: "#contact",

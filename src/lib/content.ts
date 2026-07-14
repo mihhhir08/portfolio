@@ -85,5 +85,3 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const ABOUT_TEXT =
-  "I'd rather ship than talk about shipping. I spent six months shipping production features on contract, build products end to end for early-stage founders, and maintain open-source dev tools for the LLM era. I care about the unglamorous parts: determinism, observability, and tests that catch real bugs.";

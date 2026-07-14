@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0a0a0a"/><text x="16" y="21" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="700" fill="#ff2390" text-anchor="middle">MC</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#0a0a0a"/>
+  <g stroke="#f0347f" stroke-width="1.8" fill="none" stroke-linecap="round">
+    <path d="M2 24h28"/>
+    <path d="M10 24V7M22 24V7"/>
+    <path d="M8.4 11.5h3.2M20.4 11.5h3.2"/>
+    <path d="M2 16Q5 8 10 8q6 11 12 0 5 0 8 8"/>
+    <path d="M16 16.5V24"/>
+  </g>
+</svg>

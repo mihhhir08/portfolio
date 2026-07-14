@@ -6,7 +6,7 @@ import { ArrowUp, Command } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import LiveClock from "@/components/LiveClock";
 
-const SECTIONS = ["work", "about", "contact"] as const;
+const SECTIONS = ["work", "contact"] as const;
 
 function DockItem({
   children,
@@ -25,7 +25,7 @@ function DockItem({
     <motion.span
       whileHover={{ y: -2 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
-      className="relative flex h-8 items-center justify-center px-2 text-muted transition-colors hover:text-fg"
+      className="relative flex h-10 items-center justify-center px-2 text-muted transition-colors hover:text-fg sm:h-8"
     >
       {children}
       {active && (
@@ -72,25 +72,28 @@ export default function Taskbar() {
   return (
     <nav
       aria-label="Quick actions"
-      className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 rounded-full border border-hairline bg-surface px-3 py-1 backdrop-blur-md"
+      className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-0.5 rounded-full border border-hairline bg-surface px-2 py-1.5 backdrop-blur-md sm:gap-1 sm:px-3"
     >
       {SECTIONS.map((id) => (
         <DockItem key={id} href={`#${id}`} label={id} active={active === id}>
-          <span className="font-mono text-xs">{id}</span>
+          <span className="px-1 font-mono text-sm sm:text-xs">{id}</span>
         </DockItem>
       ))}
       <span aria-hidden="true" className="mx-1 h-4 w-px bg-hairline" />
-      <DockItem onClick={openPalette} label="Open command palette">
-        <span className="flex items-center gap-1 font-mono text-xs">
-          <Command size={11} />K
-        </span>
-      </DockItem>
+      {/* ⌘K needs a keyboard — pointless on touch, hidden there */}
+      <span className="hidden [@media(pointer:fine)]:inline">
+        <DockItem onClick={openPalette} label="Open command palette">
+          <span className="flex items-center gap-1 font-mono text-xs">
+            <Command size={11} />K
+          </span>
+        </DockItem>
+      </span>
       <ThemeToggle />
       <span className="hidden px-2 font-mono text-[10px] text-muted tabular-nums sm:inline">
-        IST <LiveClock timezone="Asia/Kolkata" seconds={false} />
+        PST <LiveClock timezone="America/Los_Angeles" seconds={false} />
       </span>
       <DockItem href="#top" label="Back to top">
-        <ArrowUp size={13} />
+        <ArrowUp size={15} />
       </DockItem>
     </nav>
   );

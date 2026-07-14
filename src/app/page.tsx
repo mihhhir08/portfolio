@@ -5,7 +5,6 @@ import HeroCard from "@/components/cards/HeroCard";
 import MapCard from "@/components/cards/MapCard";
 import StackCard from "@/components/cards/StackCard";
 import WorkSection from "@/components/cards/WorkSection";
-import AboutCard from "@/components/cards/AboutCard";
 import ContactCard from "@/components/cards/ContactCard";
 import Taskbar from "@/components/Taskbar";
 import Footer from "@/components/Footer";
@@ -30,10 +29,7 @@ export default function Home() {
           <BentoCard delay={0.2} id="work" className="md:col-span-3 cv-auto">
             <WorkSection />
           </BentoCard>
-          <BentoCard delay={0.26} id="about" className="md:col-span-2 cv-auto">
-            <AboutCard />
-          </BentoCard>
-          <BentoCard delay={0.32} id="contact" className="cv-auto">
+          <BentoCard delay={0.26} id="contact" className="md:col-span-3 cv-auto">
             <ContactCard />
           </BentoCard>
         </div>
