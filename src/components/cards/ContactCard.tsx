@@ -17,7 +17,7 @@ export default function ContactCard() {
         <CopyEmail />
         <div className="flex items-center gap-4">
           <a
-            href={gmailCompose("Hey Mihir — let's build something")}
+            href={gmailCompose("Hey Mihir, let's build something")}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-fg px-4 py-1.5 text-sm font-medium text-bg transition-transform hover:scale-[1.03] active:scale-[0.98]"

@@ -8,6 +8,7 @@ import RotatingRoles from "@/components/RotatingRoles";
 import ThemeToggle from "@/components/ThemeToggle";
 import { SocialIcon } from "@/components/icons/Social";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import Magnetic from "@/components/Magnetic";
 import {
   AVAILABLE_FOR_WORK,
   HERO_SUB,
@@ -69,9 +70,11 @@ export default function HeroCard() {
             .
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <PrimaryButton href={gmailCompose("Hey Mihir — saw your portfolio")}>
-              Let&apos;s connect
-            </PrimaryButton>
+            <Magnetic>
+              <PrimaryButton href={gmailCompose("Hey Mihir, saw your portfolio")}>
+                Let&apos;s connect
+              </PrimaryButton>
+            </Magnetic>
             <SecondaryButton href="/resume.pdf" download>
               <Download size={14} />
               Resume
@@ -89,11 +92,11 @@ export default function HeroCard() {
         </div>
 
         {/* portrait — inset frame-in-frame */}
-        <div className="relative mx-auto h-40 w-40 shrink-0 md:mx-0 md:h-48 md:w-48">
+        <div className="group/photo relative mx-auto h-48 w-48 shrink-0 md:mx-0 md:mr-4 md:h-64 md:w-64">
           <svg
             viewBox="0 0 200 200"
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite]"
+            className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite] transition-opacity duration-300 group-hover/photo:opacity-40 motion-reduce:animate-none"
           >
             <defs>
               <path
@@ -111,15 +114,15 @@ export default function HeroCard() {
               </textPath>
             </text>
           </svg>
-          <div className="absolute inset-5 rounded-full border border-hairline p-1.5">
+          <div className="absolute inset-6 rounded-full border border-hairline p-1.5 transition-colors duration-300 group-hover/photo:border-accent/50">
             <div className="relative h-full w-full overflow-hidden rounded-full border border-hairline-bright">
               <Image
                 src="/photo.jpg"
                 alt="Mihirsinh Chavda"
                 fill
-                sizes="192px"
+                sizes="256px"
                 priority
-                className="object-cover"
+                className="object-cover transition-transform duration-500 ease-out group-hover/photo:scale-110"
               />
             </div>
           </div>

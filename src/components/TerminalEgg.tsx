@@ -83,7 +83,7 @@ export default function TerminalEgg() {
     if (!open) return;
     const raf = requestAnimationFrame(() => {
       setLines((l) =>
-        l.length ? l : [{ text: "mihir@portfolio — type `help`", accent: true }]
+        l.length ? l : [{ text: "mihir@portfolio · type `help`", accent: true }]
       );
       inputRef.current?.focus();
     });

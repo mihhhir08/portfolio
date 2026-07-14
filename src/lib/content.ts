@@ -13,7 +13,7 @@ export const SOCIALS = {
   linkedin: "https://www.linkedin.com/in/mihirsinh-chavda-7115b922b/",
 } as const;
 
-export const NAME = "Mihirsinh";
+export const NAME = "Mihir";
 
 export const ROLES = [
   "Software Engineer",
@@ -22,7 +22,7 @@ export const ROLES = [
 ] as const;
 
 export const HERO_SUB =
-  "I build production-ready web and AI products end to end — from semantic-search backends to open-source agent tooling. Currently building dev tools for the LLM era.";
+  "I build production-ready web and AI products end to end, from semantic-search backends to open-source agent tooling. Currently building dev tools for the LLM era.";
 
 export type ProjectStatus = "live" | "building" | "archived";
 
