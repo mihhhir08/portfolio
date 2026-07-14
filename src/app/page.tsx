@@ -6,6 +6,7 @@ import HeroCard from "@/components/cards/HeroCard";
 import PhotoCard from "@/components/cards/PhotoCard";
 import MapCard from "@/components/cards/MapCard";
 import StackCard from "@/components/cards/StackCard";
+import WorkSection from "@/components/cards/WorkSection";
 
 export default function Home() {
   return (
@@ -31,7 +32,7 @@ export default function Home() {
             <StackCard />
           </BentoCard>
           <BentoCard delay={0.24} id="work" className="md:col-span-3 cv-auto">
-            <p className="text-muted">work — Task 10</p>
+            <WorkSection />
           </BentoCard>
           <BentoCard delay={0.3} id="about" className="md:col-span-2 cv-auto">
             <p className="text-muted">about — Task 11</p>
