@@ -18,10 +18,9 @@ export default function MapCard() {
       >
         <path
           d={US_PATH}
-          fill="none"
           stroke="currentColor"
-          strokeWidth="2"
-          className="text-hairline-bright"
+          strokeWidth="1.5"
+          className="fill-muted/10 text-muted/50"
           vectorEffect="non-scaling-stroke"
         />
         {CITIES.map((c) => (
