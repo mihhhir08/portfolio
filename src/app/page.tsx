@@ -2,6 +2,7 @@ import Preloader from "@/components/Preloader";
 import Frame from "@/components/Frame";
 import BentoCard from "@/components/BentoCard";
 import ThemeToggle from "@/components/ThemeToggle";
+import HeroCard from "@/components/cards/HeroCard";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <Frame>
         <div id="top" className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <BentoCard delay={0} className="md:col-span-2">
-            <p className="text-muted">hero — Task 6</p>
+            <HeroCard />
           </BentoCard>
           <BentoCard delay={0.06}>
             <p className="text-muted">photo — Task 7</p>
