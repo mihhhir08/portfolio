@@ -37,9 +37,11 @@ export default function Preloader({ children }: { children: ReactNode }) {
 
     if (skip) {
       pixelRef.current = PIXEL_TO;
-      setOverlay(false);
-      setReady(true);
-      return;
+      const raf = requestAnimationFrame(() => {
+        setOverlay(false);
+        setReady(true);
+      });
+      return () => cancelAnimationFrame(raf);
     }
 
     try {

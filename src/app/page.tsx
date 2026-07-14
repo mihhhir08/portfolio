@@ -11,6 +11,7 @@ import AboutCard from "@/components/cards/AboutCard";
 import ContactCard from "@/components/cards/ContactCard";
 import Taskbar from "@/components/Taskbar";
 import Footer from "@/components/Footer";
+import OnekoLazy from "@/components/OnekoLazy";
 
 export default function Home() {
   return (
@@ -48,6 +49,7 @@ export default function Home() {
       </Frame>
       <Footer />
       <Taskbar />
+      <OnekoLazy />
     </Preloader>
   );
 }
