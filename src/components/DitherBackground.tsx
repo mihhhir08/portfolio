@@ -49,6 +49,7 @@ export default function DitherBackground({ pixelSizeRef }: Props) {
     const uWave = gl.getUniformLocation(prog, "wavec");
     const uDark = gl.getUniformLocation(prog, "darken");
     const uPixel = gl.getUniformLocation(prog, "pixelSize");
+    const uScroll = gl.getUniformLocation(prog, "scrollY");
 
     const applyTheme = () => {
       const t =
@@ -89,6 +90,7 @@ export default function DitherBackground({ pixelSizeRef }: Props) {
       gl.uniform1f(uTime, reduced ? 0 : t / 1000);
       gl.uniform2f(uMouse, mouse[0], mouse[1]);
       gl.uniform1f(uPixel, Math.max(1, pixelSizeRef?.current ?? 3));
+      gl.uniform1f(uScroll, window.scrollY);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       if (!reduced && running) raf = requestAnimationFrame(frame);
     };

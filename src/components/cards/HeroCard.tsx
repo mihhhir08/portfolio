@@ -59,15 +59,7 @@ export default function HeroCard() {
           </p>
           <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
             {HERO_SUB.split("dev tools for the LLM era")[0]}
-            <a
-              href={SOCIALS.x}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-slide text-accent"
-            >
-              dev tools for the LLM era
-            </a>
-            .
+            <span className="text-accent">dev tools for the LLM era</span>.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Magnetic>

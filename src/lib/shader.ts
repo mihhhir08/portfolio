@@ -14,6 +14,7 @@ uniform vec3 bgc;
 uniform vec3 wavec;
 uniform float darken;
 uniform float pixelSize;
+uniform float scrollY;
 out vec4 fragColor;
 
 const float COLORS = 4.0;
@@ -83,6 +84,9 @@ void main(){
   vec2 pc=floor(gl_FragCoord.xy/pixelSize)*pixelSize+pixelSize*0.5;
   vec2 uv=pc/resolution-0.5;
   uv.x*=resolution.x/resolution.y;
+  // couple the pattern to page scroll so the background travels with content
+  // (gl_FragCoord y is bottom-up, so subtract to move with the page)
+  uv.y-=scrollY/resolution.y;
   float f=pattern(uv);
   vec2 m=(mousePos/resolution-0.5)*vec2(1.0,-1.0);
   m.x*=resolution.x/resolution.y;

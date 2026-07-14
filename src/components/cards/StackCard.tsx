@@ -10,7 +10,6 @@ const STACK = [
   "Supabase",
   "MongoDB",
   "Claude",
-  "ChatGPT",
   "Codex",
   "Cursor",
   "LLM APIs",

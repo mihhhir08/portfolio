@@ -12,7 +12,6 @@ import Footer from "@/components/Footer";
 import OnekoLazy from "@/components/OnekoLazy";
 import CommandPalette from "@/components/CommandPalette";
 import TerminalEgg from "@/components/TerminalEgg";
-import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
@@ -44,7 +43,6 @@ export default function Home() {
       <OnekoLazy />
       <CommandPalette />
       <TerminalEgg />
-      <CustomCursor />
     </Preloader>
   );
 }
