@@ -7,6 +7,8 @@ import PhotoCard from "@/components/cards/PhotoCard";
 import MapCard from "@/components/cards/MapCard";
 import StackCard from "@/components/cards/StackCard";
 import WorkSection from "@/components/cards/WorkSection";
+import AboutCard from "@/components/cards/AboutCard";
+import ContactCard from "@/components/cards/ContactCard";
 
 export default function Home() {
   return (
@@ -35,10 +37,10 @@ export default function Home() {
             <WorkSection />
           </BentoCard>
           <BentoCard delay={0.3} id="about" className="md:col-span-2 cv-auto">
-            <p className="text-muted">about — Task 11</p>
+            <AboutCard />
           </BentoCard>
           <BentoCard delay={0.36} id="contact" className="cv-auto">
-            <p className="text-muted">contact — Task 11</p>
+            <ContactCard />
           </BentoCard>
         </div>
       </Frame>
