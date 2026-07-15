@@ -1,4 +1,4 @@
-import CopyEmail from "@/components/CopyEmail";
+import { PrimaryButton } from "@/components/Buttons";
 import { SocialIcon } from "@/components/icons/Social";
 import { SOCIALS, gmailCompose } from "@/lib/content";
 
@@ -13,21 +13,13 @@ export default function ContactCard() {
           Let&apos;s build something.
         </h2>
       </div>
-      <div className="space-y-4">
-        <CopyEmail />
-        <div className="flex items-center gap-4">
-          <a
-            href={gmailCompose("Hey Mihir, let's build something")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-fg px-4 py-1.5 text-sm font-medium text-bg transition-transform hover:scale-[1.03] active:scale-[0.98]"
-          >
-            Let&apos;s connect →
-          </a>
-          <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
-          <SocialIcon kind="x" href={SOCIALS.x} label="X" />
-          <SocialIcon kind="linkedin" href={SOCIALS.linkedin} label="LinkedIn" />
-        </div>
+      <div className="flex flex-wrap items-center gap-4">
+        <PrimaryButton href={gmailCompose("Hey Mihir, let's build something")}>
+          Let&apos;s connect
+        </PrimaryButton>
+        <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
+        <SocialIcon kind="x" href={SOCIALS.x} label="X" />
+        <SocialIcon kind="linkedin" href={SOCIALS.linkedin} label="LinkedIn" />
       </div>
     </div>
   );

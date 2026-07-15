@@ -18,7 +18,7 @@ export default function Home() {
     <Preloader>
       <Frame>
         <div id="top" className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <BentoCard delay={0} className="md:col-span-3">
+          <BentoCard delay={0} id="about" className="md:col-span-3">
             <HeroCard />
           </BentoCard>
           <BentoCard delay={0.08}>

@@ -6,7 +6,7 @@ import { ArrowUp, Command } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import LiveClock from "@/components/LiveClock";
 
-const SECTIONS = ["work", "contact"] as const;
+const SECTIONS = ["about", "work", "contact"] as const;
 
 function DockItem({
   children,
