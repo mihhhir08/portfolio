@@ -6,6 +6,7 @@ import MapCard from "@/components/cards/MapCard";
 import StackCard from "@/components/cards/StackCard";
 import WorkSection from "@/components/cards/WorkSection";
 import ContactCard from "@/components/cards/ContactCard";
+import SpotifyCard from "@/components/SpotifyCard";
 import Taskbar from "@/components/Taskbar";
 import Footer from "@/components/Footer";
 import OnekoLazy from "@/components/OnekoLazy";
@@ -29,8 +30,11 @@ export default function Home() {
           <BentoCard delay={0.2} id="work" className="md:col-span-3 cv-auto">
             <WorkSection />
           </BentoCard>
-          <BentoCard delay={0.26} id="contact" className="md:col-span-3 cv-auto">
+          <BentoCard delay={0.26} id="contact" className="md:col-span-2 cv-auto">
             <ContactCard />
+          </BentoCard>
+          <BentoCard delay={0.3} className="cv-auto">
+            <SpotifyCard />
           </BentoCard>
         </div>
       </Frame>
