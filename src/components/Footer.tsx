@@ -53,6 +53,12 @@ export default function Footer() {
         aria-hidden="true"
         viewBox="0 0 1000 150"
         className="pointer-events-none mx-auto mt-8 -mb-[6%] block w-full max-w-[1100px] select-none md:-mb-[4%]"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, black 0%, black 42%, transparent 88%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, black 42%, transparent 88%)",
+        }}
       >
         <text
           x="500"
