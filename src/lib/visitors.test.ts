@@ -40,4 +40,20 @@ describe("getVisitorCount", () => {
     const v = await getVisitorCount(false, () => LAUNCH + DAY);
     expect(v).toBe(fallbackCount(LAUNCH + DAY));
   });
+
+  it("hits /up for a first-time visitor (increments)", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ json: async () => ({ count: 1 }) });
+    vi.stubGlobal("fetch", fetchMock);
+    await getVisitorCount(false);
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringMatching(/\/up$/));
+  });
+
+  it("hits the trailing-slash read for a repeat visitor (no increment, no redirect)", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ json: async () => ({ count: 1 }) });
+    vi.stubGlobal("fetch", fetchMock);
+    await getVisitorCount(true);
+    const url = fetchMock.mock.calls[0][0] as string;
+    expect(url.endsWith("/up")).toBe(false);
+    expect(url.endsWith("/")).toBe(true);
+  });
 });

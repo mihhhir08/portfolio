@@ -15,7 +15,9 @@ export async function getVisitorCount(
   now: () => number = Date.now
 ): Promise<number> {
   try {
-    const res = await fetch(API + (alreadyVisited ? "" : "/up"));
+    // trailing slash on the plain read avoids a 301 that a bare-path GET
+    // otherwise incurs (the API redirects "/portfolio" -> "/portfolio/")
+    const res = await fetch(alreadyVisited ? `${API}/` : `${API}/up`);
     const data = (await res.json()) as { count?: number };
     return SEED + (data.count || 0);
   } catch {
