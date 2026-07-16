@@ -9,7 +9,7 @@ export const gmailCompose = (subject: string) =>
 
 export const SOCIALS = {
   github: "https://github.com/mihhhir08",
-  x: "https://x.com/Mihirxbuilding",
+  x: "https://x.com/mihirrr_08",
   linkedin: "https://www.linkedin.com/in/mihirsinh-chavda-7115b922b/",
 } as const;
 

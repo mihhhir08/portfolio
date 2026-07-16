@@ -54,7 +54,7 @@ const personLd = JSON.stringify({
   url: "https://mihirsinhchavda.com",
   sameAs: [
     "https://github.com/mihhhir08",
-    "https://x.com/Mihirxbuilding",
+    "https://x.com/mihirrr_08",
     "https://www.linkedin.com/in/mihirsinh-chavda-7115b922b/",
   ],
 });
