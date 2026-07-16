@@ -27,8 +27,9 @@ export function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       whileHover={{ scale: 1.12, rotate: -4 }}
+      whileTap={{ scale: 0.92 }}
       transition={{ type: "spring", stiffness: 400, damping: 15 }}
-      className="text-muted transition-colors hover:text-fg"
+      className="-m-2 flex items-center justify-center p-2 text-muted transition-colors hover:text-fg"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d={PATHS[kind]} />

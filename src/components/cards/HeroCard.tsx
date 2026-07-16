@@ -71,7 +71,8 @@ export default function HeroCard() {
               <Download size={14} />
               Resume
             </SecondaryButton>
-            <span className="ml-1 flex items-center gap-4">
+            {/* desktop: inline after the buttons */}
+            <span className="hidden items-center gap-4 md:ml-1 md:flex">
               <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
               <SocialIcon kind="x" href={SOCIALS.x} label="X" />
               <SocialIcon
@@ -80,6 +81,12 @@ export default function HeroCard() {
                 label="LinkedIn"
               />
             </span>
+          </div>
+          {/* mobile: own row, clearly separated from the buttons above */}
+          <div className="mt-5 flex items-center gap-6 border-t border-hairline pt-4 md:hidden">
+            <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
+            <SocialIcon kind="x" href={SOCIALS.x} label="X" />
+            <SocialIcon kind="linkedin" href={SOCIALS.linkedin} label="LinkedIn" />
           </div>
         </div>
 
