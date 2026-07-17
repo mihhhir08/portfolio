@@ -27,7 +27,6 @@ export const HERO_STACK = [
   "React",
   "Next.js",
   "Node.js",
-  "FastAPI",
 ] as const;
 
 export type ProjectStatus = "live" | "building" | "archived";
