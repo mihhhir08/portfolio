@@ -24,7 +24,7 @@ export function PrimaryButton({
       {/* sheen sweep across the surface on hover */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-[120%]"
+        className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-bg/35 to-transparent transition-transform duration-700 ease-out group-hover/btn:translate-x-[120%]"
       />
       <span className="relative">{children}</span>
       {/* arrow loops out the right edge while a fresh one enters from the left */}

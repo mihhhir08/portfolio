@@ -64,7 +64,7 @@ export default function HeroCard() {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Magnetic>
               <PrimaryButton href={gmailCompose("Hey Mihir, saw your portfolio")}>
-                Let&apos;s connect
+                Drop me a mail
               </PrimaryButton>
             </Magnetic>
             <SecondaryButton href="/resume.pdf" download>

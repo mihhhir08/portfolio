@@ -36,10 +36,23 @@ export const metadata: Metadata = {
     title: "Mihirsinh Chavda · Software Engineer",
     description:
       "I ship AI products end to end. rewind, Boostlane, AgentLens, shiplog.",
-    images: ["/og.jpg"],
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 675,
+        type: "image/jpeg",
+        alt: "Mihirsinh Chavda — Software Engineer building AI products",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@mihirrr_08",
+    creator: "@mihirrr_08",
+    title: "Mihirsinh Chavda · Software Engineer",
+    description:
+      "I ship AI products end to end. rewind, Boostlane, AgentLens, shiplog.",
     images: ["/og.jpg"],
   },
 };
