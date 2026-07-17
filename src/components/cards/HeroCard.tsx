@@ -33,7 +33,11 @@ function InlineTech({ name }: { name: string }) {
   // "Node.js" renders with the "Node" icon entry
   const icon = TECH_ICONS[name] ?? TECH_ICONS[name.replace(".js", "")];
   return (
-    <span className="inline-flex translate-y-[2px] items-center gap-1 whitespace-nowrap font-medium text-fg">
+    <span
+      className={`inline-flex items-center gap-1 whitespace-nowrap font-medium text-fg ${
+        icon ? "translate-y-[2px]" : "" // baseline nudge only makes sense with an icon
+      }`}
+    >
       {icon && (
         <svg
           width="14"
