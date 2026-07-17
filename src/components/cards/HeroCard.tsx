@@ -11,11 +11,45 @@ import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import Magnetic from "@/components/Magnetic";
 import {
   AVAILABLE_FOR_WORK,
-  HERO_SUB,
+  HERO_STACK,
   NAME,
   SOCIALS,
   gmailCompose,
 } from "@/lib/content";
+import { TECH_ICONS } from "@/lib/tech-icons";
+
+// Near-black brand marks (Next.js…) vanish on the dark theme — same
+// luminance fallback TechTag uses: flip those to currentColor.
+function isDarkHex(hex: string) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255,
+    g = (n >> 8) & 255,
+    b = n & 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 60;
+}
+
+// Inline tech chip: brand-colored icon + name, sits inside the sentence.
+function InlineTech({ name }: { name: string }) {
+  // "Node.js" renders with the "Node" icon entry
+  const icon = TECH_ICONS[name] ?? TECH_ICONS[name.replace(".js", "")];
+  return (
+    <span className="inline-flex translate-y-[2px] items-center gap-1 whitespace-nowrap font-medium text-fg">
+      {icon && (
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className={isDarkHex(icon.hex) ? "fill-fg" : undefined}
+          style={isDarkHex(icon.hex) ? undefined : { fill: icon.hex }}
+        >
+          <path d={icon.path} />
+        </svg>
+      )}
+      {name}
+    </span>
+  );
+}
 
 export default function HeroCard() {
   const ready = useReady();
@@ -58,11 +92,15 @@ export default function HeroCard() {
             <RotatingRoles />
           </p>
           <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
-            {HERO_SUB.split("the test that catches the real bug")[0]}
-            <span className="text-accent">
-              the test that catches the real bug
-            </span>
-            .
+            I build production-ready web and AI applications using{" "}
+            {HERO_STACK.map((t, i) => (
+              <span key={t}>
+                <InlineTech name={t} />
+                {i < HERO_STACK.length - 1 ? ", " : ""}
+              </span>
+            ))}
+            , <InlineTech name="RAG" />, focused on{" "}
+            <span className="text-accent">clean UX and real user impact</span>.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Magnetic>

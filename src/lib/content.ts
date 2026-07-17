@@ -21,8 +21,14 @@ export const ROLES = [
   "Builder of things that ship",
 ] as const;
 
-export const HERO_SUB =
-  "Some engineers ship features. I ship the ground they stand on, AI products end to end, and the unglamorous depths where I live are determinism, observability, and the test that catches the real bug.";
+// Rendered in HeroCard with inline icon chips for each tech name.
+export const HERO_STACK = [
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "FastAPI",
+] as const;
 
 export type ProjectStatus = "live" | "building" | "archived";
 
