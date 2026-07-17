@@ -21,7 +21,7 @@ export default function StackCard() {
   return (
     <div className="flex h-full flex-col justify-center">
       <p className="font-mono text-xs tracking-widest text-muted uppercase">
-        stack
+        the tools
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         {STACK.map((name) => (

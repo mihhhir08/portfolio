@@ -58,7 +58,7 @@ export default function MapCard() {
           <LiveClock timezone="America/Los_Angeles" className="tabular-nums" />
         </div>
         <p className="pt-2 text-[10px] tracking-wide text-muted uppercase">
-          working across US time zones
+          building on US time, wherever the work lives
         </p>
       </div>
     </div>

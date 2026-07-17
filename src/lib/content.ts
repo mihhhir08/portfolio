@@ -18,11 +18,11 @@ export const NAME = "Mihir";
 export const ROLES = [
   "Software Engineer",
   "AI Engineer",
-  "Full-Stack Developer",
+  "Builder of things that ship",
 ] as const;
 
 export const HERO_SUB =
-  "I build production-ready web and AI products end to end, from semantic-search backends to open-source agent tooling. Currently building dev tools for the LLM era.";
+  "Some engineers ship features. I ship the ground they stand on, AI products end to end, and the unglamorous depths where I live are determinism, observability, and the test that catches the real bug.";
 
 export type ProjectStatus = "live" | "building" | "archived";
 
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
   {
     name: "rewind",
     blurb:
-      "Deterministic record/replay debugger for LLM agents. Replay any run byte-exact, offline, $0.",
+      "Every bug has a birthplace. rewind takes you back to it, replaying any LLM-agent run byte-exact, offline, $0.",
     href: "https://rewind-beta.vercel.app",
     status: "live",
     repo: "mihhhir08/rewind",
@@ -57,7 +57,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Boostlane",
     blurb:
-      "Distribution engine for founders. A multi-stage LLM pipeline that learns each user's voice. 50+ users.",
+      "A founder's voice, distributed at scale. A multi-stage LLM pipeline that learns how you write, then writes as you. 50+ users.",
     href: "https://useboostlane.com",
     status: "live",
     thumb: "/previews/boostlane.jpg",
@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
   {
     name: "AgentLens",
     blurb:
-      "Open-source observability for AI coding agents. Local CLI, HTML audit report of everything the agent did.",
+      "You can't trust what you can't see. Open-source observability for AI coding agents, a local CLI that renders everything the agent did as one HTML audit.",
     href: "https://github.com/mihhhir08/AgentLens",
     status: "live",
     repo: "mihhhir08/AgentLens",
@@ -76,7 +76,7 @@ export const PROJECTS: Project[] = [
   {
     name: "shiplog",
     blurb:
-      "Zero-config CLI that turns git history into a build-in-public update. On npm.",
+      "Your git history is already the story. shiplog turns it into a build-in-public update, zero config. On npm.",
     href: "https://github.com/mihhhir08/shiplog",
     status: "live",
     repo: "mihhhir08/shiplog",

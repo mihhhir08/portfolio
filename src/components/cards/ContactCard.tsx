@@ -7,10 +7,10 @@ export default function ContactCard() {
     <div className="flex h-full flex-col justify-between gap-6">
       <div>
         <p className="font-mono text-xs tracking-widest text-muted uppercase">
-          contact
+          the signal
         </p>
         <h2 className="mt-4 font-display text-2xl font-semibold">
-          Let&apos;s build something.
+          Every great build starts with a message.
         </h2>
       </div>
       <div className="flex flex-wrap items-center gap-4">

@@ -97,9 +97,9 @@ export default function SpotifyCard() {
               <span className="h-2 w-2 rounded-full bg-muted/50" />
             </span>
             <span>
-              <span className="block text-sm text-muted">Not playing</span>
+              <span className="block text-sm text-muted">Silence, for now</span>
               <span className="mt-0.5 block font-mono text-[11px] text-muted/70">
-                the dither hums instead
+                the code has its own rhythm
               </span>
             </span>
           </motion.div>

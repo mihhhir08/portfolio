@@ -58,8 +58,11 @@ export default function HeroCard() {
             <RotatingRoles />
           </p>
           <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
-            {HERO_SUB.split("dev tools for the LLM era")[0]}
-            <span className="text-accent">dev tools for the LLM era</span>.
+            {HERO_SUB.split("the test that catches the real bug")[0]}
+            <span className="text-accent">
+              the test that catches the real bug
+            </span>
+            .
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Magnetic>
