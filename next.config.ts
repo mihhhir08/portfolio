@@ -10,12 +10,13 @@ import type { NextConfig } from "next";
 //  - connect-src: client-side fetches go to GitHub (stars) and counterapi
 //    (visitors); Vercel Analytics + the Spotify proxy are same-origin ('self').
 //    Spotify's own API is only ever called server-side, so it is absent here.
-//  - img-src data:/blob: covers next/image and canvas-derived pixels.
+//  - img-src data:/blob: covers next/image and canvas-derived pixels;
+//    i.scdn.co is Spotify's album art CDN, fetched client-side by SpotifyCard.
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://i.scdn.co",
   "font-src 'self'",
   "connect-src 'self' https://api.github.com https://api.counterapi.dev",
   "frame-ancestors 'none'",
