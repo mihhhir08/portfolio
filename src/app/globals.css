@@ -114,15 +114,6 @@ body {
   contain-intrinsic-size: 1px 600px;
 }
 
-/* Touch devices: entrance animations are skipped, so their SSR'd
-   hidden initial styles must never gate first paint (LCP). */
-@media (pointer: coarse) {
-  .entrance {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

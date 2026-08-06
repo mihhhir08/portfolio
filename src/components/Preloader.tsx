@@ -42,9 +42,6 @@ export default function Preloader({ children }: { children: ReactNode }) {
       /* private mode */
     }
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) skip = true;
-    // Phones skip the reveal — content paints immediately for the
-    // link-tap-from-Twitter crowd; desktop gets the full sequence.
-    if (matchMedia("(pointer: coarse)").matches) skip = true;
 
     if (skip) {
       const raf = requestAnimationFrame(() => {
@@ -83,7 +80,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
       {overlay && (
         <div
           aria-hidden="true"
-          className={`preloader-overlay pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black transition-transform duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] [@media(pointer:coarse)]:hidden ${
+          className={`preloader-overlay pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black transition-transform duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             wiping ? "-translate-y-full" : "translate-y-0"
           }`}
         >
