@@ -89,6 +89,13 @@ body {
   opacity: 0.38;
 }
 
+/* Set by the blocking inline script in <head>, before React hydrates —
+   hides the preload overlay before first paint for skip-visitors, since
+   the server can't know sessionStorage/matchMedia and always renders it. */
+[data-skip-preloader] .preloader-overlay {
+  display: none;
+}
+
 /* Link underline slide-in */
 .link-slide {
   background-image: linear-gradient(var(--t-accent), var(--t-accent));

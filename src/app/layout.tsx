@@ -59,6 +59,12 @@ export const metadata: Metadata = {
 
 const themeInit = `(function(){try{var t=localStorage.getItem("theme");if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="dark";}})();`;
 
+// Runs before hydration so skip-visitors (seen it this session, reduced
+// motion, touch device) never get a flash of the overlay — the server
+// can't know sessionStorage/matchMedia, so it always renders the overlay
+// markup; this hides it via CSS before the browser's first paint.
+const preloaderInit = `(function(){try{var s=sessionStorage.getItem("seen")==="1";if(!s&&matchMedia("(prefers-reduced-motion: reduce)").matches)s=true;if(!s&&matchMedia("(pointer: coarse)").matches)s=true;if(s)document.documentElement.dataset.skipPreloader="1";}catch(e){}})();`;
+
 const personLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
@@ -86,6 +92,7 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <script dangerouslySetInnerHTML={{ __html: preloaderInit }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: personLd }}

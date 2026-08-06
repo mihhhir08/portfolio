@@ -18,7 +18,6 @@ export const useReady = () => useContext(ReadyContext);
 // before settling on the Latin spelling — not authoritative translations.
 const NAME_FRAMES = [
   "Mihir",
-  "Mihir",
   "米希尔",
   "ミヒル",
   "मिहिर",
@@ -84,7 +83,7 @@ export default function Preloader({ children }: { children: ReactNode }) {
       {overlay && (
         <div
           aria-hidden="true"
-          className={`pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black transition-transform duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] [@media(pointer:coarse)]:hidden ${
+          className={`preloader-overlay pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black transition-transform duration-[650ms] ease-[cubic-bezier(0.16,1,0.3,1)] [@media(pointer:coarse)]:hidden ${
             wiping ? "-translate-y-full" : "translate-y-0"
           }`}
         >
