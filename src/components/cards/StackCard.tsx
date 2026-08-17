@@ -3,6 +3,8 @@ import TechTag from "@/components/TechTag";
 const STACK = [
   "TypeScript",
   "JavaScript",
+  "HTML",
+  "CSS",
   "React",
   "Next.js",
   "Node",
@@ -11,7 +13,7 @@ const STACK = [
   "Supabase",
   "MongoDB",
   "Claude",
-  "Codex",
+  "ChatGPT Codex",
   "Cursor",
   "VS Code",
   "GitHub",

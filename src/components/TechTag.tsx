@@ -18,7 +18,7 @@ export default function TechTag({ name }: { name: string }) {
         <svg
           width="15"
           height="15"
-          viewBox="0 0 24 24"
+          viewBox={icon.viewBox ?? "0 0 24 24"}
           aria-hidden="true"
           className={isDark(icon.hex) ? "fill-fg" : undefined}
           style={isDark(icon.hex) ? undefined : { fill: icon.hex }}
