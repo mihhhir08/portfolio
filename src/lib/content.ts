@@ -114,15 +114,5 @@ export const PROJECTS: Project[] = [
     thumb: "/previews/agentlens.jpg",
     tags: ["TypeScript", "Git internals", "CLI"],
   },
-  {
-    name: "shiplog",
-    blurb:
-      "Your git history is already the story. shiplog turns it into a build-in-public update, zero config. On npm.",
-    href: "https://github.com/mihhhir08/shiplog",
-    status: "live",
-    repo: "mihhhir08/shiplog",
-    thumb: "/previews/shiplog.jpg",
-    tags: ["TypeScript", "Commander", "npm"],
-  },
 ];
 
