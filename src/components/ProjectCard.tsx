@@ -8,7 +8,13 @@ import TechTag from "@/components/TechTag";
 import { fetchStars } from "@/lib/stars";
 import type { Project } from "@/lib/content";
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: Project;
+  featured?: boolean;
+}) {
   const [stars, setStars] = useState<number | null>(null);
 
   useEffect(() => {
@@ -16,19 +22,28 @@ export default function ProjectCard({ project }: { project: Project }) {
   }, [project.repo]);
 
   return (
-    <div className="group/card flex h-full flex-col">
+    <div
+      className={`group/card flex h-full flex-col ${
+        featured ? "md:flex-row md:items-center md:gap-8" : ""
+      }`}
+    >
       <a
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block overflow-hidden rounded-lg border border-hairline"
+        className={`relative block overflow-hidden rounded-lg border border-hairline ${
+          featured ? "md:w-[56%] md:shrink-0" : ""
+        }`}
       >
         <Image
           src={project.thumb}
           alt={`${project.name} preview`}
           width={720}
           height={450}
-          loading="lazy"
+          // The featured card is the only project above the fold.
+          loading={featured ? "eager" : "lazy"}
+          priority={featured}
+          sizes={featured ? "(min-width: 768px) 56vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
           className="w-full transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
         />
         {stars !== null && stars > 0 && (
@@ -38,18 +53,25 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         )}
       </a>
-      <div className="mt-4 flex items-center justify-between">
+      <div className={`flex flex-1 flex-col ${featured ? "mt-4 md:mt-0" : "mt-4"}`}>
+      <div className="flex items-center justify-between">
         <a
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-display text-lg font-semibold hover:text-accent transition-colors"
+          className={`font-display font-semibold hover:text-accent transition-colors ${
+            featured ? "text-lg md:text-2xl" : "text-lg"
+          }`}
         >
           {project.name}
         </a>
         <StatusDot status={project.status} />
       </div>
-      <p className="mt-1 flex-1 text-sm leading-relaxed text-muted">
+      <p
+        className={`mt-1 flex-1 leading-relaxed text-muted ${
+          featured ? "text-sm md:text-base" : "text-sm"
+        }`}
+      >
         {project.blurb}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-1.5">
@@ -90,6 +112,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             </span>
           </a>
         ))}
+      </div>
       </div>
     </div>
   );
