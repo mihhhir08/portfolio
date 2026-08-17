@@ -2,6 +2,7 @@ import TechTag from "@/components/TechTag";
 
 const STACK = [
   "TypeScript",
+  "JavaScript",
   "React",
   "Next.js",
   "Node",
@@ -12,6 +13,8 @@ const STACK = [
   "Claude",
   "Codex",
   "Cursor",
+  "VS Code",
+  "GitHub",
   "LLM APIs",
   "RAG",
   "embeddings",
