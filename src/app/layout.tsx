@@ -28,14 +28,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mihirsinhchavda.com"),
   title: "Mihirsinh Chavda · Software Engineer",
   description:
-    "Software engineer. I ship AI products end to end: rewind, Boostlane, AgentLens, shiplog. Open source, LLM pipelines, TypeScript.",
+    "Software engineer. I ship AI products end to end: Continuity, rewind, Boostlane, Earnings Delta. Open source, LLM pipelines, TypeScript.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://mihirsinhchavda.com/",
     title: "Mihirsinh Chavda · Software Engineer",
     description:
-      "I ship AI products end to end. rewind, Boostlane, AgentLens, shiplog.",
+      "I ship AI products end to end. Continuity, rewind, Boostlane, Earnings Delta.",
     images: [
       {
         url: "/og.jpg",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     creator: "@mihirrr_08",
     title: "Mihirsinh Chavda · Software Engineer",
     description:
-      "I ship AI products end to end. rewind, Boostlane, AgentLens, shiplog.",
+      "I ship AI products end to end. Continuity, rewind, Boostlane, Earnings Delta.",
     images: ["/og.jpg"],
   },
 };

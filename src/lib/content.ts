@@ -69,6 +69,42 @@ export const PROJECTS: Project[] = [
     tags: ["Next.js", "LLM pipeline", "Embeddings"],
   },
   {
+    name: "Continuity",
+    blurb:
+      "A breaking change is an incident you scheduled in advance. Continuity predicts what a release will break, repairs it inside your own environment, then proves it safe before ship.",
+    href: "https://continuity-eight.vercel.app",
+    status: "building",
+    repo: "mihhhir08/continuity",
+    thumb: "/previews/continuity.jpg",
+    tags: ["TypeScript", "MCP", "Rust"],
+    extraLinks: [
+      {
+        label: "architecture",
+        href: "https://github.com/mihhhir08/continuity/blob/main/ARCHITECTURE.md",
+      },
+    ],
+  },
+  {
+    name: "Earnings Delta",
+    blurb:
+      "The numbers move; the reason is the hard part. An evidence-first workspace that ranks what materially changed between earnings periods and keeps every claim tied to its calculation.",
+    href: "https://earnings-delta.vercel.app",
+    status: "live",
+    repo: "mihhhir08/earnings-delta",
+    thumb: "/previews/earnings-delta.jpg",
+    tags: ["Next.js", "Three.js", "Financial modeling"],
+  },
+  {
+    name: "x-algorithm, explained",
+    blurb:
+      "xAI open-sourced the For You feed and almost nobody read it. A hand-drawn technical zine that gets you to an accurate mental model in five minutes, real weights intact.",
+    href: "https://x-algorithm-explained-ten.vercel.app",
+    status: "live",
+    repo: "mihhhir08/x-algorithm-explained",
+    thumb: "/previews/x-algorithm.jpg",
+    tags: ["Next.js", "Recommender systems", "Editorial design"],
+  },
+  {
     name: "AgentLens",
     blurb:
       "You can't trust what you can't see. Open-source observability for AI coding agents, a local CLI that renders everything the agent did as one HTML audit.",
@@ -77,16 +113,6 @@ export const PROJECTS: Project[] = [
     repo: "mihhhir08/AgentLens",
     thumb: "/previews/agentlens.jpg",
     tags: ["TypeScript", "Git internals", "CLI"],
-  },
-  {
-    name: "shiplog",
-    blurb:
-      "Your git history is already the story. shiplog turns it into a build-in-public update, zero config. On npm.",
-    href: "https://github.com/mihhhir08/shiplog",
-    status: "live",
-    repo: "mihhhir08/shiplog",
-    thumb: "/previews/shiplog.jpg",
-    tags: ["TypeScript", "Commander", "npm"],
   },
 ];
 

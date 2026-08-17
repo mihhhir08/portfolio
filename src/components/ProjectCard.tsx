@@ -29,6 +29,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           width={720}
           height={450}
           loading="lazy"
+          sizes="(min-width: 768px) 50vw, 100vw"
           className="w-full transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
         />
         {stars !== null && stars > 0 && (

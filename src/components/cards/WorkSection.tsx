@@ -1,6 +1,8 @@
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/lib/content";
 
+// Every project gets an equal card. Keep PROJECTS an EVEN length so the
+// last row fills — no project is promoted just to patch a gap.
 export default function WorkSection() {
   return (
     <div>
