@@ -16,16 +16,15 @@ export const useReady = () => useContext(ReadyContext);
 
 // Stylized transliterations of the name across scripts, flashed rapidly
 // before settling on the Latin spelling — not authoritative translations.
-// Ordered so no two neighbouring frames share a script family — the
+// Ordered so no two neighbouring frames share a script family. The
 // silhouette should change completely on every tick, which is the whole
-// effect. Hangul and Arabic carry the most contrast against the CJK and
-// Indic frames, so they sit in the middle where the flash is fastest.
+// effect. Hangul carries the most contrast against the CJK and Indic
+// frames, so it sits in the middle where the flash is fastest.
 const NAME_FRAMES = [
   "Mihir",
   "米希尔",
   "ミヒル",
   "미히르",
-  "مهير",
   "मिहिर",
   "મિહિર",
   "Mihirsinh",
