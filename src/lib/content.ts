@@ -44,6 +44,15 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    name: "Sourcemap",
+    blurb:
+      "AI can write the code. It can't supervise it. A free 90-day path through software engineering, system design, and AI engineering, 358 concepts against 286 checked sources, built for reading systems instead of just shipping them.",
+    href: "https://sourcemap-sand.vercel.app",
+    status: "live",
+    thumb: "/previews/sourcemap.jpg",
+    tags: ["Next.js", "Supabase", "Spaced repetition"],
+  },
+  {
     name: "rewind",
     blurb:
       "Every bug has a birthplace. rewind takes you back to it, replaying any LLM-agent run byte-exact, offline, $0.",
@@ -113,6 +122,16 @@ export const PROJECTS: Project[] = [
     repo: "mihhhir08/AgentLens",
     thumb: "/previews/agentlens.jpg",
     tags: ["TypeScript", "Git internals", "CLI"],
+  },
+  {
+    name: "cupel",
+    blurb:
+      "You have never read what your agent loads. One local command that assays every skill, plugin, and MCP server on your machine, grading what it costs, what it can reach, and whether it works.",
+    href: "https://mihhhir08.github.io/cupel/",
+    status: "building",
+    repo: "mihhhir08/cupel",
+    thumb: "/previews/cupel.jpg",
+    tags: ["TypeScript", "MCP", "Static analysis"],
   },
 ];
 
