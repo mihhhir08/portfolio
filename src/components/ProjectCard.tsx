@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import StatusDot from "@/components/StatusDot";
 import TechTag from "@/components/TechTag";
 import { fetchStars } from "@/lib/stars";
+import { caseStudyFor } from "@/lib/case-studies";
 import type { Project } from "@/lib/content";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -15,12 +17,17 @@ export default function ProjectCard({ project }: { project: Project }) {
     if (project.repo) fetchStars(project.repo).then(setStars);
   }, [project.repo]);
 
+  // With a study written, the thumbnail and title lead inward and "visit"
+  // keeps the outbound link. Without one, everything points out as before.
+  const study = caseStudyFor(project.name);
+  const headHref = study ? `/work/${study.slug}` : project.href;
+  const outward = study ? {} : { target: "_blank", rel: "noopener noreferrer" };
+
   return (
     <div className="group/card flex h-full flex-col">
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={headHref}
+        {...outward}
         className="relative block overflow-hidden rounded-lg border border-hairline"
       >
         <Image
@@ -38,16 +45,15 @@ export default function ProjectCard({ project }: { project: Project }) {
             {stars}
           </span>
         )}
-      </a>
+      </Link>
       <div className="mt-4 flex items-center justify-between">
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={headHref}
+          {...outward}
           className="font-display text-lg font-semibold hover:text-accent transition-colors"
         >
           {project.name}
-        </a>
+        </Link>
         <StatusDot status={project.status} />
       </div>
       <p className="mt-1 flex-1 text-sm leading-relaxed text-muted">
@@ -58,7 +64,18 @@ export default function ProjectCard({ project }: { project: Project }) {
           <TechTag key={t} name={t} />
         ))}
       </div>
-      <div className="mt-3 flex gap-4 font-mono text-xs">
+      <div className="mt-3 flex flex-wrap gap-4 font-mono text-xs">
+        {study && (
+          <Link
+            href={`/work/${study.slug}`}
+            className="link-slide group/lnk inline-flex items-center gap-0.5 text-accent transition-colors hover:text-fg"
+          >
+            case study{" "}
+            <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        )}
         <a
           href={project.href}
           target="_blank"
