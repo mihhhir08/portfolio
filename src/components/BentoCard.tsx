@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { useReady } from "@/components/Preloader";
+import { sectionView } from "@/lib/analytics";
 
 type Props = {
   children: ReactNode;
   className?: string;
   delay?: number;
   id?: string;
+  /** Analytics name. Reports once, the first time the card is half seen. */
+  track?: string;
 };
 
 export default function BentoCard({
@@ -16,11 +19,33 @@ export default function BentoCard({
   className = "",
   delay = 0,
   id,
+  track,
 }: Props) {
   const ready = useReady();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!track || !el) return;
+
+    // Counts as seen once the card reaches the middle half of the viewport.
+    // A ratio threshold cannot work here: the work card is taller than the
+    // screen, so its ratio never reaches 0.5 and it would never report.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        sectionView(track);
+        io.disconnect(); // one report per card per page view
+      },
+      { rootMargin: "-25% 0px -25% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [track]);
 
   return (
     <motion.section
+      ref={ref}
       id={id}
       initial={{ opacity: 0, y: 20 }}
       animate={ready ? { opacity: 1, y: 0 } : {}}

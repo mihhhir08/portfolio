@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { EMAIL, PROJECTS, SOCIALS } from "@/lib/content";
+import { easterEgg } from "@/lib/analytics";
 
 type Command = { n: string; h: string; run: () => void };
 
@@ -81,8 +82,11 @@ export default function CommandPalette() {
     setOpen(true);
   }, []);
 
+  // Covers both open paths, the taskbar button and the key combo.
   useEffect(() => {
-    if (open) inputRef.current?.focus();
+    if (!open) return;
+    inputRef.current?.focus();
+    easterEgg("command_palette");
   }, [open]);
 
   useEffect(() => {

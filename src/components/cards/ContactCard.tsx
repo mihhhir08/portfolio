@@ -14,7 +14,10 @@ export default function ContactCard() {
         </h2>
       </div>
       <div className="flex flex-wrap items-center gap-4">
-        <PrimaryButton href={gmailCompose("Hey Mihir, let's build something")}>
+        <PrimaryButton
+          href={gmailCompose("Hey Mihir, let's build something")}
+          track="email"
+        >
           Drop me a mail
         </PrimaryButton>
         <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />

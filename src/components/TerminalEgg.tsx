@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { PROJECTS } from "@/lib/content";
+import { easterEgg } from "@/lib/analytics";
 
 type Line = { text: string; accent?: boolean };
 
@@ -81,6 +82,7 @@ export default function TerminalEgg() {
 
   useEffect(() => {
     if (!open) return;
+    easterEgg("terminal");
     const raf = requestAnimationFrame(() => {
       setLines((l) =>
         l.length ? l : [{ text: "mihir@portfolio · type `help`", accent: true }]

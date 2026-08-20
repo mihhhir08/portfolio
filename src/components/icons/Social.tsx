@@ -15,14 +15,18 @@ export function SocialIcon({
   kind,
   href,
   label,
+  track,
 }: {
   kind: keyof typeof PATHS;
   href: string;
   label: string;
+  track?: string;
 }) {
   return (
     <motion.a
       href={href}
+      data-track={track ?? "social"}
+      data-track-detail={kind}
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"

@@ -6,6 +6,7 @@ import Preloader from "@/components/Preloader";
 import Frame from "@/components/Frame";
 import BentoCard from "@/components/BentoCard";
 import Footer from "@/components/Footer";
+import TrackClicks from "@/components/TrackClicks";
 import Pipeline from "@/components/Pipeline";
 import StatusDot from "@/components/StatusDot";
 import TechTag from "@/components/TechTag";
@@ -77,10 +78,16 @@ export default async function CaseStudyPage({ params }: Params) {
     <Preloader>
       <Frame>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <BentoCard delay={0} className="md:col-span-3">
+          <BentoCard
+            delay={0}
+            track={`${study.slug}: header`}
+            className="md:col-span-3"
+          >
             <div className="flex h-full flex-col gap-6">
               <Link
                 href="/#work"
+                data-track="case_study_back"
+                data-track-detail={study.slug}
                 className="inline-flex w-fit items-center gap-2 font-mono text-xs text-muted transition-colors hover:text-fg"
               >
                 <ArrowLeft size={13} />
@@ -115,6 +122,8 @@ export default async function CaseStudyPage({ params }: Params) {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      data-track="case_study_link"
+                      data-track-detail={`${study.slug}: ${l.label}`}
                       className="text-muted transition-colors hover:text-accent"
                     >
                       {l.label} &#8599;
@@ -125,7 +134,11 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.08} className="md:col-span-2">
+          <BentoCard
+            delay={0.08}
+            track={`${study.slug}: problem`}
+            className="md:col-span-2"
+          >
             <Eyebrow>the problem</Eyebrow>
             <div className="mt-4 space-y-4">
               {study.problem.map((p) => (
@@ -136,7 +149,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.14}>
+          <BentoCard delay={0.14} track={`${study.slug}: build`}>
             <Eyebrow>the build</Eyebrow>
             <dl className="mt-4 space-y-4 text-sm">
               {(
@@ -156,7 +169,11 @@ export default async function CaseStudyPage({ params }: Params) {
             </dl>
           </BentoCard>
 
-          <BentoCard delay={0.2} className="md:col-span-3">
+          <BentoCard
+            delay={0.2}
+            track={`${study.slug}: how`}
+            className="md:col-span-3"
+          >
             <Eyebrow>how it works</Eyebrow>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
               {study.how.body}
@@ -166,7 +183,11 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.26} className="md:col-span-3">
+          <BentoCard
+            delay={0.26}
+            track={`${study.slug}: call`}
+            className="md:col-span-3"
+          >
             <Eyebrow>the call</Eyebrow>
             <p className="mt-4 max-w-3xl font-display text-lg font-medium">
               {study.decision.question}
@@ -191,7 +212,11 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.3} className="md:col-span-3">
+          <BentoCard
+            delay={0.3}
+            track={`${study.slug}: standing`}
+            className="md:col-span-3"
+          >
             <Eyebrow>where it stands</Eyebrow>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
               {study.standing}
@@ -200,6 +225,7 @@ export default async function CaseStudyPage({ params }: Params) {
         </div>
       </Frame>
       <Footer />
+      <TrackClicks />
     </Preloader>
   );
 }

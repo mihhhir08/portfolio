@@ -8,14 +8,17 @@ export function PrimaryButton({
   href,
   children,
   download,
+  track,
 }: {
   href: string;
   children: ReactNode;
   download?: boolean;
+  track?: string;
 }) {
   return (
     <a
       href={href}
+      data-track={track}
       {...(download
         ? { download: true }
         : { target: "_blank", rel: "noopener noreferrer" })}
@@ -44,14 +47,17 @@ export function SecondaryButton({
   href,
   children,
   download,
+  track,
 }: {
   href: string;
   children: ReactNode;
   download?: boolean;
+  track?: string;
 }) {
   return (
     <a
       href={href}
+      data-track={track}
       {...(download
         ? { download: true }
         : { target: "_blank", rel: "noopener noreferrer" })}

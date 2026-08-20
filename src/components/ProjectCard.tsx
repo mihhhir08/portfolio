@@ -28,6 +28,8 @@ export default function ProjectCard({ project }: { project: Project }) {
       <Link
         href={headHref}
         {...outward}
+        data-track="project_thumb"
+        data-track-detail={project.name}
         className="relative block overflow-hidden rounded-lg border border-hairline"
       >
         <Image
@@ -50,6 +52,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         <Link
           href={headHref}
           {...outward}
+          data-track="project_title"
+          data-track-detail={project.name}
           className="font-display text-lg font-semibold hover:text-accent transition-colors"
         >
           {project.name}
@@ -68,6 +72,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         {study && (
           <Link
             href={`/work/${study.slug}`}
+            data-track="project_case_study"
+            data-track-detail={project.name}
             className="link-slide group/lnk inline-flex items-center gap-0.5 text-accent transition-colors hover:text-fg"
           >
             case study{" "}
@@ -80,6 +86,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           href={project.href}
           target="_blank"
           rel="noopener noreferrer"
+          data-track="project_visit"
+          data-track-detail={project.name}
           className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
         >
           visit <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
@@ -89,6 +97,8 @@ export default function ProjectCard({ project }: { project: Project }) {
             href={`https://github.com/${project.repo}`}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="project_source"
+            data-track-detail={project.name}
             className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
           >
             source <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
@@ -100,6 +110,8 @@ export default function ProjectCard({ project }: { project: Project }) {
             href={l.href}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="project_extra"
+            data-track-detail={`${project.name}: ${l.label}`}
             className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
           >
             {l.label}{" "}
