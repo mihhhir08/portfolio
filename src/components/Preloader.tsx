@@ -16,16 +16,22 @@ export const useReady = () => useContext(ReadyContext);
 
 // Stylized transliterations of the name across scripts, flashed rapidly
 // before settling on the Latin spelling — not authoritative translations.
+// Ordered so no two neighbouring frames share a script family — the
+// silhouette should change completely on every tick, which is the whole
+// effect. Hangul and Arabic carry the most contrast against the CJK and
+// Indic frames, so they sit in the middle where the flash is fastest.
 const NAME_FRAMES = [
   "Mihir",
   "米希尔",
   "ミヒル",
+  "미히르",
+  "مهير",
   "मिहिर",
   "મિહિર",
   "Mihirsinh",
 ];
-const FRAME_MS = 150;
-const HOLD_MS = 550;
+const FRAME_MS = 170;
+const HOLD_MS = 800;
 
 // The curtain is PANELS vertical strips that lift one after another,
 // left to right. Each strip clips its own slice of the name, so the
