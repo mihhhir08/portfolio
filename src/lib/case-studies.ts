@@ -92,6 +92,40 @@ export const CASE_STUDIES: CaseStudy[] = [
     standing:
       "In active development, and open source. The Rust engine backs the CLI, the MCP server, and CI from one implementation. Architecture, security model, and roadmap are written down and public, including the parts that are not built yet.",
   },
+  {
+    slug: "earnings-delta",
+    project: "Earnings Delta",
+    claim: "A large movement with thin evidence is still a large movement.",
+    meta: {
+      role: "Solo. Product, finance modeling, build.",
+      timeline: "2026",
+      stack: "Next.js, TypeScript, Three.js, Zod",
+    },
+    problem: [
+      "Two reporting periods, hundreds of line items, and a fixed amount of attention. The work is not finding the differences. It is deciding which differences matter, then defending that ranking to somebody else.",
+      "Most tooling collapses those two questions into one number. Rank by what is easy to explain and you quietly bury the movement nobody has written commentary about yet, which is often the one worth reading.",
+    ],
+    how: {
+      body: "Financial statements and segment values drive every calculation across five reporting periods per company, compared quarter over quarter and year over year. Material changes are ranked by magnitude and company relevance. Every finding stays attached to the calculation that produced it and to representative commentary, so a conclusion can be opened and checked rather than trusted. Thesis stress tests deliberately go looking for contradicting evidence before returning a bounded verdict.",
+      pipeline: [
+        { label: "compare", sub: "quarter and year over year" },
+        { label: "rank", sub: "magnitude and relevance" },
+        { label: "evidence", sub: "calculation stays attached" },
+        { label: "stress test", sub: "seek the contradiction" },
+      ],
+    },
+    decision: {
+      question: "Should materiality and confidence be one score or two?",
+      chose:
+        "Two. Materiality scores the size of a movement and its relevance to the company. Confidence is a separate label for how well supported it is: Verified, Supported, or Interpretation.",
+      rejected:
+        "Folding evidence availability into the ranking. It yields a tidier list and one number to sort on.",
+      consequence:
+        "A large movement with no commentary attached still ranks where its size puts it, carrying an Interpretation label rather than being quietly demoted. The ranking answers what moved. The label answers how much of that is established.",
+    },
+    standing:
+      "Live. Workspaces cover NVDA, AAPL, and MSFT across five periods each, on a typed representative dataset rather than a live feed, which the interface states plainly rather than implies. Questions outside the supported set return a scope limit instead of an answer.",
+  },
 ];
 
 export const caseStudyFor = (projectName: string) =>
