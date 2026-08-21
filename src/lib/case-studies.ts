@@ -57,6 +57,41 @@ export const CASE_STUDIES: CaseStudy[] = [
     standing:
       "Live and open source. Record, replay, step, fork, and diff all ship in the CLI. The demo agent carries a real bug that only surfaces on the last step, so you can watch a fix get verified offline for nothing.",
   },
+  {
+    slug: "continuity",
+    project: "Continuity",
+    claim: "Change should be testable before it becomes an incident.",
+    meta: {
+      role: "Solo. Architecture, engine, docs.",
+      timeline: "2026",
+      stack: "Rust, TypeScript, MCP, PostgreSQL",
+    },
+    problem: [
+      "A provider changes an API, a schema, an auth flow, a runtime default. The changelog describes the change. It cannot tell you which of your call sites will fail, or whether the migration you just applied actually works.",
+      "So you find out in staging if you are lucky and in production if you are not. The missing piece is not documentation. It is that nobody can run tomorrow's change against today's code.",
+    ],
+    how: {
+      body: "One Rust engine does the analysis, and the CLI, the local MCP server, and CI are thin adapters over it rather than three implementations that drift apart. It maps the repository, simulates a proposed change against real call sites, applies deterministic transforms before any model-generated repair, then runs verification and signs the result. Source stays inside your environment by default. The hosted side coordinates tasks and evidence, and never needs to read the code.",
+      pipeline: [
+        { label: "scan", sub: "map the call sites" },
+        { label: "simulate", sub: "predict what breaks" },
+        { label: "repair", sub: "transforms first, model second" },
+        { label: "verify", sub: "your builds, your tests" },
+        { label: "attest", sub: "signed evidence" },
+      ],
+    },
+    decision: {
+      question: "What gets to declare a repair safe?",
+      chose:
+        "The checks the repository already had. Verification runs the customer's own builds and tests, and a repair counts as safe only when those pass.",
+      rejected:
+        "Letting the model that wrote the patch grade the patch. It is the cheapest signal to build and the easiest to demo, and it is the one signal with an interest in the answer.",
+      consequence:
+        "Continuity cannot claim a repair works in a repository with no tests, and it reports that instead of guessing. A verdict is never stronger than the checks you already trusted enough to run.",
+    },
+    standing:
+      "In active development, and open source. The Rust engine backs the CLI, the MCP server, and CI from one implementation. Architecture, security model, and roadmap are written down and public, including the parts that are not built yet.",
+  },
 ];
 
 export const caseStudyFor = (projectName: string) =>
