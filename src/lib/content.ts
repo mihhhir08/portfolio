@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
     name: "AgentLens",
     blurb:
       "You can't trust what you can't see. Open-source observability for AI coding agents, a local CLI that renders everything the agent did as one HTML audit.",
-    href: "https://github.com/mihhhir08/AgentLens",
+    href: "https://agent-lens-azure.vercel.app",
     status: "live",
     repo: "mihhhir08/AgentLens",
     thumb: "/previews/agentlens.jpg",
