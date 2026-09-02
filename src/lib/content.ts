@@ -1,5 +1,7 @@
 // Single source of truth for all copy, links, and flags.
 
+export const SITE = "https://mihirsinhchavda.com";
+
 export const AVAILABLE_FOR_WORK = true; // flip to false to hide the badge
 
 export const EMAIL = "mihhhir08@gmail.com";

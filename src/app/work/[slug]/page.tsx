@@ -11,7 +11,7 @@ import Pipeline from "@/components/Pipeline";
 import StatusDot from "@/components/StatusDot";
 import TechTag from "@/components/TechTag";
 import { CASE_STUDIES } from "@/lib/case-studies";
-import { PROJECTS } from "@/lib/content";
+import { SITE, PROJECTS } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -74,8 +74,45 @@ export default async function CaseStudyPage({ params }: Params) {
     ...(project?.extraLinks ?? []),
   ].filter(Boolean) as { label: string; href: string }[];
 
+  // Breadcrumbs render as a visible trail in search results, and tying the
+  // article back to the site-wide #person @id keeps authorship on one entity
+  // instead of creating a second, unlinked "Mihirsinh Chavda".
+  const studyLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${SITE}/work/${study.slug}#article`,
+        headline: `${study.project} · case study`,
+        description: study.claim,
+        url: `${SITE}/work/${study.slug}`,
+        author: { "@id": `${SITE}/#person` },
+        publisher: { "@id": `${SITE}/#person` },
+        isPartOf: { "@id": `${SITE}/#website` },
+        about: study.project,
+        ...(project ? { image: `${SITE}${project.thumb}` } : {}),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: study.project,
+            item: `${SITE}/work/${study.slug}`,
+          },
+        ],
+      },
+    ],
+  });
+
   return (
     <Preloader>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: studyLd }}
+      />
       <Frame>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <BentoCard

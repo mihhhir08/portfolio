@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import { SITE, SOCIALS, HERO_STACK, PROJECTS } from "@/lib/content";
 import "./globals.css";
 
 const clashDisplay = localFont({
@@ -25,14 +26,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mihirsinhchavda.com"),
-  title: "Mihirsinh Chavda · Software Engineer",
+  metadataBase: new URL(SITE),
+  // template puts the name on every sub-page title, so case studies read
+  // "Continuity · case study · Mihirsinh Chavda" in results
+  title: {
+    default: "Mihirsinh Chavda · Software Engineer",
+    template: "%s · Mihirsinh Chavda",
+  },
   description:
     "Software engineer. I ship AI products end to end: Continuity, rewind, Boostlane, Earnings Delta. Open source, LLM pipelines, TypeScript.",
+  applicationName: "Mihirsinh Chavda",
+  authors: [{ name: "Mihirsinh Chavda", url: SITE }],
+  creator: "Mihirsinh Chavda",
+  publisher: "Mihirsinh Chavda",
   alternates: { canonical: "/" },
+  // without max-image-preview:large Google defaults to "standard" and shows a
+  // thumbnail instead of the full preview image
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
-    url: "https://mihirsinhchavda.com/",
+    url: `${SITE}/`,
     title: "Mihirsinh Chavda · Software Engineer",
     description:
       "I ship AI products end to end. Continuity, rewind, Boostlane, Earnings Delta.",
@@ -65,16 +88,49 @@ const themeInit = `(function(){try{var t=localStorage.getItem("theme");if(t!=="d
 // this hides it via CSS before the browser's first paint.
 const preloaderInit = `(function(){try{var s=sessionStorage.getItem("seen")==="1";if(!s&&matchMedia("(prefers-reduced-motion: reduce)").matches)s=true;if(s)document.documentElement.dataset.skipPreloader="1";}catch(e){}})();`;
 
-const personLd = JSON.stringify({
+// One @graph with stable @ids instead of three loose blobs, so crawlers and
+// answer engines resolve Person / WebSite / ProfilePage as one linked entity
+// rather than three unrelated ones. knowsAbout is built from the real stack
+// and project tags — no invented credentials.
+const knowsAbout = [
+  ...new Set([...HERO_STACK, ...PROJECTS.flatMap((p) => p.tags)]),
+].sort();
+
+const siteLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Mihirsinh Chavda",
-  jobTitle: "Software Engineer",
-  url: "https://mihirsinhchavda.com",
-  sameAs: [
-    "https://github.com/mihhhir08",
-    "https://x.com/mihirrr_08",
-    "https://www.linkedin.com/in/mihirsinh-chavda-7115b922b/",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE}/#person`,
+      name: "Mihirsinh Chavda",
+      alternateName: "Mihir",
+      jobTitle: "Software Engineer",
+      description:
+        "Software engineer who ships AI products end to end — LLM pipelines, developer tooling, and open-source systems in TypeScript.",
+      url: SITE,
+      image: `${SITE}/photo.jpg`,
+      knowsAbout,
+      sameAs: [SOCIALS.github, SOCIALS.x, SOCIALS.linkedin],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: "Mihirsinh Chavda",
+      description:
+        "Portfolio of Mihirsinh Chavda — selected AI systems, data products, and full-stack work.",
+      inLanguage: "en",
+      publisher: { "@id": `${SITE}/#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE}/#profilepage`,
+      url: SITE,
+      name: "Mihirsinh Chavda · Software Engineer",
+      isPartOf: { "@id": `${SITE}/#website` },
+      about: { "@id": `${SITE}/#person` },
+      primaryImageOfPage: `${SITE}/photo.jpg`,
+    },
   ],
 });
 
@@ -95,7 +151,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: preloaderInit }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: personLd }}
+          dangerouslySetInnerHTML={{ __html: siteLd }}
         />
       </head>
       <body className="min-h-full flex flex-col">
