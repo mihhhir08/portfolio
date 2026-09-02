@@ -6,7 +6,8 @@ import { getVisitorCount } from "@/lib/visitors";
 import { SOCIALS } from "@/lib/content";
 
 export default function Footer() {
-  const [count, setCount] = useState<number | null>(null);
+  // undefined = still loading, null = unavailable (render nothing), number = live
+  const [count, setCount] = useState<number | null | undefined>(undefined);
 
   useEffect(() => {
     let visited = false;
@@ -17,6 +18,7 @@ export default function Footer() {
     }
     getVisitorCount(visited).then((c) => {
       setCount(c);
+      if (c === null) return; // don't mark visited if the increment never landed
       try {
         localStorage.setItem("visited", "1");
       } catch {
@@ -30,18 +32,20 @@ export default function Footer() {
       <div className="mx-auto w-[calc(100%-32px)] max-w-[840px]">
         <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-hairline pt-6 font-mono text-xs text-muted">
           <span>© {new Date().getFullYear()} Mihirsinh Chavda</span>
-          <span className="flex items-center gap-1.5">
-            you are visitor&nbsp;
-            {count === null ? (
-              <span className="inline-block w-12 animate-pulse rounded bg-hairline">
-                &nbsp;
-              </span>
-            ) : (
-              <span className="text-fg">
-                #<Odometer value={count} />
-              </span>
-            )}
-          </span>
+          {count !== null && (
+            <span className="flex items-center gap-1.5">
+              you are visitor&nbsp;
+              {count === undefined ? (
+                <span className="inline-block w-12 animate-pulse rounded bg-hairline">
+                  &nbsp;
+                </span>
+              ) : (
+                <span className="text-fg">
+                  #<Odometer value={count} />
+                </span>
+              )}
+            </span>
+          )}
           <span className="flex gap-4">
             <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" className="link-slide hover:text-fg">GitHub</a>
             <a href={SOCIALS.x} target="_blank" rel="noopener noreferrer" className="link-slide hover:text-fg">X</a>

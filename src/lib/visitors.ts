@@ -1,26 +1,22 @@
-// Visitor counter, ported from v1 main.js. counterapi.dev backend with a
-// deterministic date-based fallback. Seed 312 = count at 2026-07-05 launch.
-
-const SEED = 312;
-const LAUNCH = Date.UTC(2026, 6, 5);
-const API = "https://api.counterapi.dev/v1/mihirsinhchavda/portfolio";
-
-export function fallbackCount(now: number, launch = LAUNCH): number {
-  const days = Math.max(0, Math.floor((now - launch) / 864e5));
-  return SEED + days * 7 + (days % 4) * 2 + 1;
-}
+// Visitor counter client. Talks to /api/visitors, which owns the Redis store.
+// Returns null when the count is unavailable — the footer then renders nothing
+// rather than showing a number that isn't a real count.
 
 export async function getVisitorCount(
-  alreadyVisited: boolean,
-  now: () => number = Date.now
-): Promise<number> {
+  alreadyVisited: boolean
+): Promise<number | null> {
   try {
-    // trailing slash on the plain read avoids a 301 that a bare-path GET
-    // otherwise incurs (the API redirects "/portfolio" -> "/portfolio/")
-    const res = await fetch(alreadyVisited ? `${API}/` : `${API}/up`);
-    const data = (await res.json()) as { count?: number };
-    return SEED + (data.count || 0);
+    const res = await fetch("/api/visitors", {
+      method: alreadyVisited ? "GET" : "POST",
+      cache: "no-store",
+    });
+
+    // fetch only rejects on network failure, never on 4xx/5xx
+    if (!res.ok) return null;
+
+    const data = (await res.json()) as { count?: unknown };
+    return typeof data.count === "number" ? data.count : null;
   } catch {
-    return fallbackCount(now());
+    return null;
   }
 }
