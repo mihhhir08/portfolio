@@ -481,7 +481,7 @@ function isTransparent(color: string) {
   return !color || color === "transparent" || /,\s*0\)$/.test(color);
 }
 
-function paintBox(
+function boxPath(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
@@ -495,7 +495,6 @@ function paintBox(
   } else {
     ctx.rect(x, y, w, h);
   }
-  ctx.fill();
 }
 
 function paintReplica(
@@ -533,14 +532,27 @@ function paintReplica(
       // image decode inside the render loop.
       ctx.globalAlpha = 0.55;
       ctx.fillStyle = style.color;
-      paintBox(ctx, x, y, r.width, r.height, radius);
+      boxPath(ctx, x, y, r.width, r.height, radius);
+      ctx.fill();
       ctx.globalAlpha = 1;
       continue;
     }
 
     if (!isTransparent(style.backgroundColor)) {
       ctx.fillStyle = style.backgroundColor;
-      paintBox(ctx, x, y, r.width, r.height, radius);
+      boxPath(ctx, x, y, r.width, r.height, radius);
+      ctx.fill();
+    }
+
+    // Borders carry the card's edge. Stroked on the centre line so the path
+    // lands where the browser paints it, otherwise the cipher traces a rounded
+    // rect a pixel off from the real one.
+    const bw = parseFloat(style.borderTopWidth) || 0;
+    if (bw > 0 && !isTransparent(style.borderTopColor)) {
+      ctx.strokeStyle = style.borderTopColor;
+      ctx.lineWidth = bw;
+      boxPath(ctx, x + bw / 2, y + bw / 2, r.width - bw, r.height - bw, radius);
+      ctx.stroke();
     }
   }
 
@@ -964,7 +976,13 @@ export function createDecryptReveal(
 
   const intersection = new IntersectionObserver((entries) => {
     visible = entries[entries.length - 1]?.isIntersecting ?? true;
-    if (visible) start();
+    if (visible) {
+      // content-visibility:auto skips layout for offscreen subtrees, so the
+      // rects the replica was painted from may be stale by the time the card
+      // scrolls back into view
+      contentDirty = true;
+      start();
+    }
   });
   intersection.observe(output);
 
