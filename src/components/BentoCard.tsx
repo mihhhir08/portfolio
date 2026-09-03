@@ -12,8 +12,6 @@ type Props = {
   id?: string;
   /** Analytics name. Reports once, the first time the card is half seen. */
   track?: string;
-  /** Hover lift. Off for cards with an overlay that would drift away from it. */
-  lift?: boolean;
 };
 
 export default function BentoCard({
@@ -22,7 +20,6 @@ export default function BentoCard({
   delay = 0,
   id,
   track,
-  lift = true,
 }: Props) {
   const ready = useReady();
   const ref = useRef<HTMLElement>(null);
@@ -52,7 +49,7 @@ export default function BentoCard({
       id={id}
       initial={{ opacity: 0, y: 20 }}
       animate={ready ? { opacity: 1, y: 0 } : {}}
-      whileHover={lift ? { y: -3 } : undefined}
+      whileHover={{ y: -3 }}
       transition={{ duration: 0.5, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={`entrance group relative overflow-hidden rounded-xl border border-hairline bg-surface p-6 transition-colors duration-300 hover:border-hairline-bright ${className}`}
     >
