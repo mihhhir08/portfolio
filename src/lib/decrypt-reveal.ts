@@ -477,14 +477,72 @@ function clampAspect(aspect: number) {
  * glyph shape matching and cell color, since the decrypt circle reveals the
  * genuine DOM rather than this texture.
  */
+function isTransparent(color: string) {
+  return !color || color === "transparent" || /,\s*0\)$/.test(color);
+}
+
+function paintBox(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  radius: number,
+) {
+  ctx.beginPath();
+  if (radius > 0 && typeof ctx.roundRect === "function") {
+    ctx.roundRect(x, y, w, h, Math.min(radius, w / 2, h / 2));
+  } else {
+    ctx.rect(x, y, w, h);
+  }
+  ctx.fill();
+}
+
 function paintReplica(
   ctx: CanvasRenderingContext2D,
   content: HTMLElement,
+  frame: DOMRect,
   dpr: number,
 ) {
-  const box = content.getBoundingClientRect();
+  // Everything is positioned against the output canvas, not the content
+  // element: the canvas is larger than its content when the effect bleeds into
+  // a parent's padding, and an origin mismatch would offset the whole replica
+  // against the texture the shader samples.
+  const box = frame;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, box.width, box.height);
+
+  // Filled boxes first, in document order, so painted surfaces (buttons,
+  // chips, icons) earn glyphs too — otherwise a solid button reads as empty
+  // space and stays un-ciphered while only its label is veiled.
+  for (const el of content.querySelectorAll<HTMLElement>("*")) {
+    const style = getComputedStyle(el);
+    if (style.visibility === "hidden" || style.display === "none") continue;
+    if (parseFloat(style.opacity) < 0.05) continue;
+
+    const r = el.getBoundingClientRect();
+    if (!r.width || !r.height) continue;
+    const x = r.left - box.left;
+    const y = r.top - box.top;
+    const radius = parseFloat(style.borderRadius) || 0;
+
+    if (el instanceof SVGElement) {
+      // Icons are approximated by a block in their own color. The cipher only
+      // needs coverage and hue per cell, not the actual paths, and this keeps
+      // the replica synchronous — rasterising real SVGs would need an async
+      // image decode inside the render loop.
+      ctx.globalAlpha = 0.55;
+      ctx.fillStyle = style.color;
+      paintBox(ctx, x, y, r.width, r.height, radius);
+      ctx.globalAlpha = 1;
+      continue;
+    }
+
+    if (!isTransparent(style.backgroundColor)) {
+      ctx.fillStyle = style.backgroundColor;
+      paintBox(ctx, x, y, r.width, r.height, radius);
+    }
+  }
 
   const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
   const range = document.createRange();
@@ -752,7 +810,7 @@ export function createDecryptReveal(
     contentDirty = false;
     cellsDirty = true;
     const dpr = output.width / Math.max(output.clientWidth, 1);
-    paintReplica(sourceCtx!, content, dpr);
+    paintReplica(sourceCtx!, content, output.getBoundingClientRect(), dpr);
     gl!.bindTexture(gl!.TEXTURE_2D, contentTexture);
     gl!.texImage2D(gl!.TEXTURE_2D, 0, gl!.RGBA, gl!.RGBA, gl!.UNSIGNED_BYTE, source);
   }

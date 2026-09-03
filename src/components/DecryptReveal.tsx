@@ -114,7 +114,9 @@ export default function DecryptReveal({ children, className, ...options }: Props
 
   return (
     <div className={`relative ${className ?? ""}`}>
-      <div ref={contentRef}>{children}</div>
+      <div ref={contentRef} className="h-full">
+        {children}
+      </div>
       <canvas
         ref={outputRef}
         aria-hidden="true"
