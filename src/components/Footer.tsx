@@ -28,7 +28,9 @@ export default function Footer() {
   return (
     <footer className="relative mt-8 overflow-hidden pb-0">
       <div className="mx-auto w-[calc(100%-32px)] max-w-[840px]">
-        <p className="mb-10 max-w-[38ch] font-display text-lg leading-snug text-balance text-muted md:text-xl">
+        {/* Mono, matching the rest of the footer — display type here read as a
+            second headline competing with the contact card directly above. */}
+        <p className="mb-8 max-w-[54ch] font-mono text-sm leading-relaxed text-muted">
           I&rsquo;ll leave you more curious than I found you, and better
           equipped to do something about it
         </p>
