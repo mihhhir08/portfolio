@@ -28,12 +28,6 @@ export default function Footer() {
   return (
     <footer className="relative mt-8 overflow-hidden pb-0">
       <div className="mx-auto w-[calc(100%-32px)] max-w-[840px]">
-        {/* Mono, matching the rest of the footer — display type here read as a
-            second headline competing with the contact card directly above. */}
-        <p className="mb-8 max-w-[54ch] font-mono text-sm leading-relaxed text-muted">
-          I&rsquo;ll leave you more curious than I found you, and better
-          equipped to do something about it
-        </p>
         <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-hairline pt-6 font-mono text-xs text-muted">
           <span>© {new Date().getFullYear()} Mihirsinh Chavda</span>
           <span className="flex items-center gap-1.5">
