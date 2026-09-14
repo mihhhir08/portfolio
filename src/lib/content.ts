@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     name: "Sourcemap",
     blurb:
       "AI can write the code. It can't supervise it. A free 90-day path through software engineering, system design, and AI engineering, 358 concepts against 286 checked sources, built for reading systems instead of just shipping them.",
-    href: "https://sourcemap-sand.vercel.app",
+    href: "https://sourcemap.co/",
     status: "live",
     thumb: "/previews/sourcemap.jpg",
     tags: ["Next.js", "Supabase", "Spaced repetition"],
