@@ -9,7 +9,29 @@ const PATHS = {
   x: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z",
   linkedin:
     "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452z",
+  mail: "M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5v-11zm2.4-.5 7.6 5.7L19.6 6H4.4zM20 7.9l-7.4 5.5a1 1 0 0 1-1.2 0L4 7.9v9.6c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5V7.9z",
 } as const;
+
+// Bare glyph — for rows that are themselves the link, where a nested <a> is invalid.
+export function SocialGlyph({
+  kind,
+  size = 18,
+}: {
+  kind: keyof typeof PATHS;
+  size?: number;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d={PATHS[kind]} />
+    </svg>
+  );
+}
 
 export function SocialIcon({
   kind,
@@ -35,9 +57,7 @@ export function SocialIcon({
       transition={{ type: "spring", stiffness: 400, damping: 15 }}
       className="-m-2 flex items-center justify-center p-2 text-muted transition-colors hover:text-fg"
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-        <path d={PATHS[kind]} />
-      </svg>
+      <SocialGlyph kind={kind} />
     </motion.a>
   );
 }
