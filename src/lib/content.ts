@@ -39,6 +39,7 @@ export type Project = {
   href: string;
   status: ProjectStatus;
   repo?: string; // owner/name — omit for closed source (no star badge)
+  metric?: string; // traction, shown as a pill on the thumbnail — keep it short and true
   thumb: string;
   tags: string[];
   extraLinks?: { label: string; href: string }[];
@@ -51,8 +52,19 @@ export const PROJECTS: Project[] = [
       "AI can write the code. It can't supervise it. A free 90-day path through software engineering, system design, and AI engineering, 358 concepts against 286 checked sources, built for reading systems instead of just shipping them.",
     href: "https://sourcemap.co/",
     status: "live",
+    metric: "300+ daily users",
     thumb: "/previews/sourcemap.jpg",
     tags: ["Next.js", "Supabase", "Spaced repetition"],
+  },
+  {
+    name: "High Council",
+    blurb:
+      "Two approvals and no signal is not a decision. High Council convenes a bench of adversarial agents on any question, blinds each seat to what you hoped to hear, checks every claim against your repo, and returns one committed verdict with the strongest case against it attached.",
+    href: "https://high-council.vercel.app",
+    status: "live",
+    repo: "mihhhir08/high-council",
+    thumb: "/previews/high-council.jpg",
+    tags: ["Claude", "Multi-agent", "Plugin"],
   },
   {
     name: "rewind",
@@ -71,11 +83,21 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    name: "Shotframe",
+    blurb:
+      "A screenshot is the first thing anyone sees of your work. Shotframe frames, annotates and animates one entirely in the browser — wallpapers, device frames, 3D tilt, and MP4 export — without a pixel ever leaving the device.",
+    href: "https://shotframe-wheat.vercel.app",
+    status: "live",
+    thumb: "/previews/shotframe.jpg",
+    tags: ["TypeScript", "React", "Canvas"],
+  },
+  {
     name: "Boostlane",
     blurb:
-      "A founder's voice, distributed at scale. A multi-stage LLM pipeline that learns how you write, then writes as you. 50+ users.",
+      "A founder's voice, distributed at scale. A multi-stage LLM pipeline that learns how you write, then writes as you.",
     href: "https://useboostlane.com",
     status: "live",
+    metric: "50+ users",
     thumb: "/previews/boostlane.jpg",
     tags: ["Next.js", "LLM pipeline", "Embeddings"],
   },

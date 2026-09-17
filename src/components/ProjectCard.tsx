@@ -41,6 +41,15 @@ export default function ProjectCard({ project }: { project: Project }) {
           sizes="(min-width: 768px) 50vw, 100vw"
           className="w-full transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
         />
+        {project.metric && (
+          <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full border border-hairline bg-bg/80 px-2 py-0.5 font-mono text-[10px] text-fg backdrop-blur">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-1.5 w-1.5 animate-ping rounded-full bg-status opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-status" />
+            </span>
+            {project.metric}
+          </span>
+        )}
         {stars !== null && stars > 0 && (
           <span className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-full border border-hairline bg-bg/80 px-2 py-0.5 font-mono text-[10px] backdrop-blur">
             <Star size={9} className="fill-current" />
