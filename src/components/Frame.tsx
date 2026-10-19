@@ -15,13 +15,11 @@ function Tick({ className }: { className: string }) {
 export default function Frame({ children }: { children: ReactNode }) {
   return (
     <div className="relative mx-auto my-8 w-[calc(100%-32px)] max-w-[1080px] md:my-16">
-      <Tick className="-top-1 -left-1 border-t border-l" />
-      <Tick className="-top-1 -right-1 border-t border-r" />
-      <Tick className="-bottom-1 -left-1 border-b border-l" />
-      <Tick className="-bottom-1 -right-1 border-b border-r" />
-      <div className="rounded-2xl border border-hairline bg-surface/40 p-3 backdrop-blur-[2px] md:p-4">
-        {children}
-      </div>
+      <Tick className="-top-3 -left-3 border-t border-l" />
+      <Tick className="-top-3 -right-3 border-t border-r" />
+      <Tick className="-bottom-3 -left-3 border-b border-l" />
+      <Tick className="-bottom-3 -right-3 border-b border-r" />
+      {children}
     </div>
   );
 }

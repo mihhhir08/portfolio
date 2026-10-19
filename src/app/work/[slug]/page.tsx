@@ -116,7 +116,6 @@ export default async function CaseStudyPage({ params }: Params) {
       <Frame>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <BentoCard
-            delay={0}
             track={`${study.slug}: header`}
             className="md:col-span-3"
           >
@@ -172,7 +171,6 @@ export default async function CaseStudyPage({ params }: Params) {
           </BentoCard>
 
           <BentoCard
-            delay={0.08}
             track={`${study.slug}: problem`}
             className="md:col-span-2"
           >
@@ -186,7 +184,7 @@ export default async function CaseStudyPage({ params }: Params) {
             </div>
           </BentoCard>
 
-          <BentoCard delay={0.14} track={`${study.slug}: build`}>
+          <BentoCard track={`${study.slug}: build`}>
             <Eyebrow>the build</Eyebrow>
             <dl className="mt-4 space-y-4 text-sm">
               {(
@@ -207,7 +205,6 @@ export default async function CaseStudyPage({ params }: Params) {
           </BentoCard>
 
           <BentoCard
-            delay={0.2}
             track={`${study.slug}: how`}
             className="md:col-span-3"
           >
@@ -221,7 +218,6 @@ export default async function CaseStudyPage({ params }: Params) {
           </BentoCard>
 
           <BentoCard
-            delay={0.26}
             track={`${study.slug}: call`}
             className="md:col-span-3"
           >
@@ -250,7 +246,6 @@ export default async function CaseStudyPage({ params }: Params) {
           </BentoCard>
 
           <BentoCard
-            delay={0.3}
             track={`${study.slug}: standing`}
             className="md:col-span-3"
           >
