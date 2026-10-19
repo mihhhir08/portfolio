@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
 /*
-  Design system — portfolio v2
+  Design system, portfolio v3
   Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 only.
   Color rule: ONE accent (hot pink). Green = status only. Nothing else.
-  Hierarchy: hairline 1px borders, no shadows. Size + space, not boxes.
+  Hierarchy: hairline 1px borders, no shadows, no blur. Size + space, not boxes.
+  Type: Clash for headings, Schibsted for everything else. Sentence case,
+  no letter-spaced caps. Every card opens with .card-title.
+  Radius: cards 12, media and buttons 8, tags 6. Circles only for dots.
+  Motion: only where it carries meaning (hero reveal, now playing). No hover
+  lifts, no entrance fades.
 */
 
 @theme inline {
-  --font-display: var(--font-clash), var(--font-geist-sans), sans-serif;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-clash), var(--font-text), sans-serif;
+  --font-sans: var(--font-text), system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   --color-bg: var(--t-bg);
   --color-surface: var(--t-surface);
@@ -96,16 +101,26 @@ body {
   display: none;
 }
 
-/* Link underline slide-in */
-.link-slide {
-  background-image: linear-gradient(var(--t-accent), var(--t-accent));
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.25s ease;
+/* The one heading style every card opens with */
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--t-fg);
 }
-.link-slide:hover {
-  background-size: 100% 1px;
+
+/* The one text-link style: always underlined, so it reads as a link at rest */
+.text-link {
+  text-decoration: underline;
+  text-decoration-color: var(--t-hairline-bright);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.text-link:hover {
+  color: var(--t-fg);
+  text-decoration-color: var(--t-accent);
 }
 
 /* Below-fold rendering hint */

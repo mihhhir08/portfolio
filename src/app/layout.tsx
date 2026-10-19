@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE, SOCIALS, HERO_STACK, PROJECTS } from "@/lib/content";
@@ -15,13 +15,9 @@ const clashDisplay = localFont({
   display: "swap",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Newspaper grotesk for text: plainer than Clash, so headings carry the voice.
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-text",
   subsets: ["latin"],
 });
 
@@ -144,7 +140,7 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${clashDisplay.variable} h-full antialiased`}
+      className={`${schibsted.variable} ${clashDisplay.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
