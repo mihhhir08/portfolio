@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SITE, SOCIALS, HERO_STACK, PROJECTS } from "@/lib/content";
@@ -15,9 +15,13 @@ const clashDisplay = localFont({
   display: "swap",
 });
 
-// Newspaper grotesk for text: plainer than Clash, so headings carry the voice.
-const schibsted = Schibsted_Grotesk({
-  variable: "--font-text",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -61,7 +65,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 675,
         type: "image/jpeg",
-        alt: "Mihirsinh Chavda, software engineer building AI products",
+        alt: "Mihirsinh Chavda — Software Engineer building AI products",
       },
     ],
   },
@@ -102,7 +106,7 @@ const siteLd = JSON.stringify({
       alternateName: "Mihir",
       jobTitle: "Software Engineer",
       description:
-        "Software engineer who ships AI products end to end: LLM pipelines, developer tooling, and open-source systems in TypeScript.",
+        "Software engineer who ships AI products end to end — LLM pipelines, developer tooling, and open-source systems in TypeScript.",
       url: SITE,
       image: `${SITE}/photo.jpg`,
       knowsAbout,
@@ -114,7 +118,7 @@ const siteLd = JSON.stringify({
       url: SITE,
       name: "Mihirsinh Chavda",
       description:
-        "Portfolio of Mihirsinh Chavda: selected AI systems, data products, and full-stack work.",
+        "Portfolio of Mihirsinh Chavda — selected AI systems, data products, and full-stack work.",
       inLanguage: "en",
       publisher: { "@id": `${SITE}/#person` },
     },
@@ -140,7 +144,7 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${schibsted.variable} ${clashDisplay.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${clashDisplay.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />

@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
     tags: ["TypeScript", "SQLite", "SDK internals"],
     extraLinks: [
       {
-        label: "Design decisions",
+        label: "design decisions",
         href: "https://github.com/mihhhir08/rewind/blob/main/DECISIONS.md",
       },
     ],
@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Shotframe",
     blurb:
-      "A screenshot is the first thing anyone sees of your work. Shotframe frames, annotates and animates one entirely in the browser, with wallpapers, device frames, 3D tilt and MP4 export. No pixel ever leaves the device.",
+      "A screenshot is the first thing anyone sees of your work. Shotframe frames, annotates and animates one entirely in the browser — wallpapers, device frames, 3D tilt, and MP4 export — without a pixel ever leaving the device.",
     href: "https://shotframe-wheat.vercel.app",
     status: "live",
     thumb: "/previews/shotframe.jpg",
@@ -112,7 +112,7 @@ export const PROJECTS: Project[] = [
     tags: ["TypeScript", "MCP", "Rust"],
     extraLinks: [
       {
-        label: "Architecture",
+        label: "architecture",
         href: "https://github.com/mihhhir08/continuity/blob/main/ARCHITECTURE.md",
       },
     ],

@@ -29,27 +29,27 @@ export default function Footer() {
 
   return (
     <footer className="relative mt-8 overflow-hidden pb-0">
-      <div className="mx-auto w-[calc(100%-32px)] max-w-[1080px]">
-        <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-hairline pt-6 text-sm text-muted">
+      <div className="mx-auto w-[calc(100%-32px)] max-w-[840px]">
+        <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-hairline pt-6 font-mono text-xs text-muted">
           <span>© {new Date().getFullYear()} Mihirsinh Chavda</span>
           {count !== null && (
             <span className="flex items-center gap-1.5">
               you are visitor&nbsp;
               {count === undefined ? (
-                <span className="inline-block w-12 rounded bg-hairline">
+                <span className="inline-block w-12 animate-pulse rounded bg-hairline">
                   &nbsp;
                 </span>
               ) : (
-                <span className="text-fg tabular-nums">
+                <span className="text-fg">
                   #<Odometer value={count} />
                 </span>
               )}
             </span>
           )}
           <span className="flex gap-4">
-            <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" className="text-link">GitHub</a>
-            <a href={SOCIALS.x} target="_blank" rel="noopener noreferrer" className="text-link">X</a>
-            <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" className="text-link">LinkedIn</a>
+            <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" className="link-slide hover:text-fg">GitHub</a>
+            <a href={SOCIALS.x} target="_blank" rel="noopener noreferrer" className="link-slide hover:text-fg">X</a>
+            <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" className="link-slide hover:text-fg">LinkedIn</a>
           </span>
         </div>
       </div>

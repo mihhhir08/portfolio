@@ -5,8 +5,10 @@ import { motion } from "motion/react";
 import { Download } from "lucide-react";
 import { useReady } from "@/components/Preloader";
 import RotatingRoles from "@/components/RotatingRoles";
+import ThemeToggle from "@/components/ThemeToggle";
 import { SocialIcon } from "@/components/icons/Social";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import Magnetic from "@/components/Magnetic";
 import {
   AVAILABLE_FOR_WORK,
   HERO_STACK,
@@ -58,20 +60,26 @@ export default function HeroCard() {
 
   return (
     <div className="flex h-full flex-col gap-8">
-      {/* top row: identity strip inside the box */}
+      {/* top row — identity strip inside the box */}
       <div className="flex items-center justify-between">
         <span className="font-display text-base font-semibold tracking-tight">
           Mihirsinh Chavda
         </span>
-        {AVAILABLE_FOR_WORK && (
-          <span className="flex items-center gap-2 text-sm whitespace-nowrap text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-status" />
-            Available for work
-          </span>
-        )}
+        <div className="flex items-center gap-3">
+          {AVAILABLE_FOR_WORK && (
+            <span className="flex items-center gap-2 text-sm font-medium whitespace-nowrap text-status">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-status opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-status" />
+              </span>
+              Available for work
+            </span>
+          )}
+          <ThemeToggle />
+        </div>
       </div>
 
-      {/* main row: intro left, portrait right */}
+      {/* main row — intro left, portrait right */}
       <div className="flex flex-col-reverse items-start gap-8 md:flex-row md:items-center md:justify-between">
         <div className="max-w-xl">
           <span className="block overflow-hidden">
@@ -87,33 +95,34 @@ export default function HeroCard() {
           <p className="mt-2 font-display text-2xl font-medium md:text-3xl">
             <RotatingRoles />
           </p>
-          <p className="mt-5 text-sm leading-relaxed text-pretty text-muted md:text-base">
+          <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
             I build production-ready web and AI applications using{" "}
-            {/* comma rides inside the nowrap span so a line never starts with one */}
-            {[...HERO_STACK, "RAG"].map((t) => (
+            {HERO_STACK.map((t, i) => (
               <span key={t}>
-                <span className="whitespace-nowrap">
-                  <InlineTech name={t} />,
-                </span>{" "}
+                <InlineTech name={t} />
+                {i < HERO_STACK.length - 1 ? ", " : ""}
               </span>
             ))}
-            focused on{" "}
+            , <InlineTech name="RAG" />, focused on{" "}
             <span className="text-accent">clean UX and real user impact</span>.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <PrimaryButton
-              href={gmailCompose("Hey Mihir, saw your portfolio")}
-              track="email"
-            >
-              Email me
-            </PrimaryButton>
+            <Magnetic>
+              <PrimaryButton
+                href={gmailCompose("Hey Mihir, saw your portfolio")}
+                track="email"
+              >
+                Drop me a mail
+              </PrimaryButton>
+            </Magnetic>
             <SecondaryButton href="/resume.pdf" download track="resume">
               <Download size={14} />
               Resume
             </SecondaryButton>
-            {/* ml-2 cancels the icons' -m-2 hit area, so the first glyph lines
-                up with the button edge above once it wraps on mobile */}
-            <span className="ml-2 flex items-center gap-4">
+            {/* wraps below the buttons on mobile; ml-5 lines the first icon
+                up with the "Let's connect" label, which sits px-5 inside its
+                pill — flush ml-1 reads as misaligned once wrapped */}
+            <span className="ml-5 flex items-center gap-4 md:ml-1">
               <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
               <SocialIcon kind="x" href={SOCIALS.x} label="X" />
               <SocialIcon
@@ -125,15 +134,41 @@ export default function HeroCard() {
           </div>
         </div>
 
-        <div className="relative mx-auto h-44 w-44 shrink-0 overflow-hidden rounded-xl border border-hairline-bright md:mx-0 md:h-56 md:w-56">
-          <Image
-            src="/photo.jpg"
-            alt="Mihirsinh Chavda"
-            fill
-            sizes="224px"
-            priority
-            className="object-cover"
-          />
+        {/* portrait — inset frame-in-frame */}
+        <div className="group/photo relative mx-auto h-48 w-48 shrink-0 md:mx-0 md:mr-4 md:h-64 md:w-64">
+          <svg
+            viewBox="0 0 200 200"
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full animate-[spin_22s_linear_infinite] transition-opacity duration-300 group-hover/photo:opacity-40 motion-reduce:animate-none"
+          >
+            <defs>
+              <path
+                id="orbit-path"
+                d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"
+              />
+            </defs>
+            <text className="fill-muted/60 font-mono text-[10.5px] tracking-[2.5px]">
+              <textPath
+                href="#orbit-path"
+                textLength="570"
+                lengthAdjust="spacing"
+              >
+                SOFTWARE ENGINEER · AI · OPEN SOURCE ·
+              </textPath>
+            </text>
+          </svg>
+          <div className="absolute inset-6 rounded-full border border-hairline p-1.5 transition-colors duration-300 group-hover/photo:border-accent/50">
+            <div className="relative h-full w-full overflow-hidden rounded-full border border-hairline-bright">
+              <Image
+                src="/photo.jpg"
+                alt="Mihirsinh Chavda"
+                fill
+                sizes="256px"
+                priority
+                className="object-cover transition-transform duration-500 ease-out group-hover/photo:scale-110"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

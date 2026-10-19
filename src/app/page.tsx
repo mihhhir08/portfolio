@@ -19,22 +19,22 @@ export default function Home() {
     <Preloader>
       <Frame>
         <div id="top" className="grid grid-cols-1 gap-3 md:grid-cols-3">
-          <BentoCard id="about" track="hero" className="md:col-span-3">
+          <BentoCard delay={0} id="about" track="hero" className="md:col-span-3">
             <HeroCard />
           </BentoCard>
-          <BentoCard track="location">
+          <BentoCard delay={0.08} track="location">
             <MapCard />
           </BentoCard>
-          <BentoCard track="stack" className="md:col-span-2">
+          <BentoCard delay={0.14} track="stack" className="md:col-span-2">
             <StackCard />
           </BentoCard>
-          <BentoCard id="work" track="work" className="md:col-span-3 cv-auto">
+          <BentoCard delay={0.2} id="work" track="work" className="md:col-span-3 cv-auto">
             <WorkSection />
           </BentoCard>
-          <BentoCard id="contact" track="contact" className="md:col-span-2 cv-auto">
+          <BentoCard delay={0.26} id="contact" track="contact" className="md:col-span-2 cv-auto">
             <ContactCard />
           </BentoCard>
-          <BentoCard track="spotify" className="cv-auto">
+          <BentoCard delay={0.3} track="spotify" className="cv-auto">
             <SpotifyCard />
           </BentoCard>
         </div>

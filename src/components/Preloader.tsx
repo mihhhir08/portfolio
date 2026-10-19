@@ -115,9 +115,9 @@ export default function Preloader({ children }: { children: ReactNode }) {
                 style={{ left: `${(i * -100) / PANELS}vw`, width: "100vw" }}
               >
                 {/* Sized against the viewport so the word spans several
-                    strips. That overlap is what makes it tear apart
+                    strips — that overlap is what makes it tear apart
                     as they lift, instead of riding up inside one. */}
-                <span className="font-display text-[clamp(2rem,10vw,9rem)] leading-none font-semibold tracking-tight whitespace-nowrap text-white">
+                <span className="font-display text-[clamp(2rem,10vw,9rem)] leading-none font-semibold tracking-[0.08em] whitespace-nowrap text-white uppercase">
                   {NAME_FRAMES[frame]}
                 </span>
               </div>

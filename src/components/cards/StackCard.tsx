@@ -24,8 +24,10 @@ const STACK = [
 
 export default function StackCard() {
   return (
-    <div className="flex h-full flex-col">
-      <h2 className="card-title">Tools I use</h2>
+    <div className="flex h-full flex-col justify-center">
+      <p className="font-mono text-xs tracking-widest text-muted uppercase">
+        the tools
+      </p>
       <div className="mt-4 flex flex-wrap gap-2">
         {STACK.map((name) => (
           <TechTag key={name} name={name} />
