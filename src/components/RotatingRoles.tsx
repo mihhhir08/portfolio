@@ -17,9 +17,9 @@ export default function RotatingRoles() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={ROLES[i]}
-          initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -14, filter: "blur(6px)" }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -14 }}
           transition={{ duration: 0.45, ease: "easeInOut" }}
           className="inline-block"
         >
