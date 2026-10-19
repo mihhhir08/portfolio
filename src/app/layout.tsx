@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 675,
         type: "image/jpeg",
-        alt: "Mihirsinh Chavda — Software Engineer building AI products",
+        alt: "Mihirsinh Chavda, software engineer building AI products",
       },
     ],
   },
@@ -102,7 +102,7 @@ const siteLd = JSON.stringify({
       alternateName: "Mihir",
       jobTitle: "Software Engineer",
       description:
-        "Software engineer who ships AI products end to end — LLM pipelines, developer tooling, and open-source systems in TypeScript.",
+        "Software engineer who ships AI products end to end: LLM pipelines, developer tooling, and open-source systems in TypeScript.",
       url: SITE,
       image: `${SITE}/photo.jpg`,
       knowsAbout,
@@ -114,7 +114,7 @@ const siteLd = JSON.stringify({
       url: SITE,
       name: "Mihirsinh Chavda",
       description:
-        "Portfolio of Mihirsinh Chavda — selected AI systems, data products, and full-stack work.",
+        "Portfolio of Mihirsinh Chavda: selected AI systems, data products, and full-stack work.",
       inLanguage: "en",
       publisher: { "@id": `${SITE}/#person` },
     },
