@@ -6,7 +6,7 @@ import { AVAILABLE_FOR_WORK, SOCIALS, gmailCompose } from "@/lib/content";
 const ROUTES = [
   {
     kind: "mail",
-    title: "Drop me a mail",
+    title: "Email me",
     subtitle: "Roles, projects, or a quick question",
     href: gmailCompose("Hey Mihir, let's build something"),
     track: "email",
@@ -37,14 +37,7 @@ const ROUTES = [
 export default function ContactCard() {
   return (
     <div className="flex h-full flex-col gap-6">
-      <div>
-        <p className="font-mono text-xs tracking-widest text-muted uppercase">
-          the signal
-        </p>
-        <h2 className="mt-4 font-display text-2xl font-semibold">
-          Every great build starts with a message.
-        </h2>
-      </div>
+      <h2 className="card-title">Get in touch</h2>
 
       <div className="grid gap-2 sm:grid-cols-2">
         {ROUTES.map((route) => (
@@ -55,7 +48,7 @@ export default function ContactCard() {
             data-track-detail={route.kind}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/row flex items-center gap-3 rounded-xl border border-hairline-bright bg-surface px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            className="group/row flex items-center gap-3 rounded-lg border border-hairline px-4 py-3 transition-colors duration-200 hover:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
           >
             <span className="text-muted transition-colors group-hover/row:text-accent">
               <SocialGlyph kind={route.kind} />
@@ -68,24 +61,12 @@ export default function ContactCard() {
                 {route.subtitle}
               </span>
             </span>
-            <span
-              aria-hidden="true"
-              className="text-muted transition-transform duration-200 group-hover/row:translate-x-0.5 group-hover/row:text-accent"
-            >
-              →
-            </span>
           </a>
         ))}
       </div>
 
-      <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted">
-        <span className="flex items-center gap-2">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-1.5 w-1.5 animate-ping rounded-full bg-status opacity-75" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-status" />
-          </span>
-          Replies within a day
-        </span>
+      <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted">
+        <span>Replies within a day</span>
         {AVAILABLE_FOR_WORK && <span>Open to full-time and freelance work</span>}
       </div>
     </div>

@@ -13,11 +13,11 @@ function isDark(hex: string) {
 export default function TechTag({ name }: { name: string }) {
   const icon = TECH_ICONS[name];
   return (
-    <span className="inline-flex items-center gap-2 rounded-xl border border-hairline bg-bg/40 px-4 py-2 font-mono text-[13px] text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-hairline-bright hover:text-fg">
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-hairline px-2 py-1 text-xs text-muted">
       {icon && (
         <svg
-          width="15"
-          height="15"
+          width="13"
+          height="13"
           viewBox={icon.viewBox ?? "0 0 24 24"}
           aria-hidden="true"
           className={isDark(icon.hex) ? "fill-fg" : undefined}

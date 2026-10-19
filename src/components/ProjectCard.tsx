@@ -42,16 +42,12 @@ export default function ProjectCard({ project }: { project: Project }) {
           className="w-full transition-transform duration-500 ease-out group-hover/card:scale-[1.03]"
         />
         {project.metric && (
-          <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full border border-hairline bg-bg/80 px-2 py-0.5 font-mono text-[10px] text-fg backdrop-blur">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-1.5 w-1.5 animate-ping rounded-full bg-status opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-status" />
-            </span>
+          <span className="absolute top-2 left-2 rounded-md border border-hairline bg-bg px-2 py-0.5 text-xs text-fg tabular-nums">
             {project.metric}
           </span>
         )}
         {stars !== null && stars > 0 && (
-          <span className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-full border border-hairline bg-bg/80 px-2 py-0.5 font-mono text-[10px] backdrop-blur">
+          <span className="absolute top-2 right-2 inline-flex items-center gap-1 rounded-md border border-hairline bg-bg px-2 py-0.5 text-xs tabular-nums">
             <Star size={9} className="fill-current" />
             {stars}
           </span>
@@ -63,7 +59,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {...outward}
           data-track="project_title"
           data-track-detail={project.name}
-          className="font-display text-lg font-semibold hover:text-accent transition-colors"
+          className="font-display text-base font-semibold transition-colors hover:text-accent"
         >
           {project.name}
         </Link>
@@ -77,18 +73,15 @@ export default function ProjectCard({ project }: { project: Project }) {
           <TechTag key={t} name={t} />
         ))}
       </div>
-      <div className="mt-3 flex flex-wrap gap-4 font-mono text-xs">
+      <div className="mt-4 flex flex-wrap gap-4 text-sm">
         {study && (
           <Link
             href={`/work/${study.slug}`}
             data-track="project_case_study"
             data-track-detail={project.name}
-            className="link-slide group/lnk inline-flex items-center gap-0.5 text-accent transition-colors hover:text-fg"
+            className="text-link text-accent"
           >
-            case study{" "}
-            <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5">
-              →
-            </span>
+            Case study
           </Link>
         )}
         <a
@@ -97,9 +90,9 @@ export default function ProjectCard({ project }: { project: Project }) {
           rel="noopener noreferrer"
           data-track="project_visit"
           data-track-detail={project.name}
-          className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
+          className="text-link text-muted"
         >
-          visit <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
+          Visit
         </a>
         {project.repo && (
           <a
@@ -108,9 +101,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             rel="noopener noreferrer"
             data-track="project_source"
             data-track-detail={project.name}
-            className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
+            className="text-link text-muted"
           >
-            source <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">↗</span>
+            Source
           </a>
         )}
         {project.extraLinks?.map((l) => (
@@ -121,12 +114,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             rel="noopener noreferrer"
             data-track="project_extra"
             data-track-detail={`${project.name}: ${l.label}`}
-            className="link-slide group/lnk inline-flex items-center gap-0.5 text-muted transition-colors hover:text-fg"
+            className="text-link text-muted"
           >
-            {l.label}{" "}
-            <span className="inline-block transition-transform duration-200 group-hover/lnk:translate-x-0.5 group-hover/lnk:-translate-y-0.5">
-              ↗
-            </span>
+            {l.label}
           </a>
         ))}
       </div>
