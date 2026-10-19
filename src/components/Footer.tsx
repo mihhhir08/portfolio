@@ -29,7 +29,7 @@ export default function Footer() {
 
   return (
     <footer className="relative mt-8 overflow-hidden pb-0">
-      <div className="mx-auto w-[calc(100%-32px)] max-w-[840px]">
+      <div className="mx-auto w-[calc(100%-32px)] max-w-[1080px]">
         <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-t border-hairline pt-6 text-sm text-muted">
           <span>© {new Date().getFullYear()} Mihirsinh Chavda</span>
           {count !== null && (

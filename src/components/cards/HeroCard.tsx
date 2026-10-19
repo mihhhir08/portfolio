@@ -87,15 +87,17 @@ export default function HeroCard() {
           <p className="mt-2 font-display text-2xl font-medium md:text-3xl">
             <RotatingRoles />
           </p>
-          <p className="mt-5 text-sm leading-relaxed text-muted md:text-base">
+          <p className="mt-5 text-sm leading-relaxed text-pretty text-muted md:text-base">
             I build production-ready web and AI applications using{" "}
-            {HERO_STACK.map((t, i) => (
+            {/* comma rides inside the nowrap span so a line never starts with one */}
+            {[...HERO_STACK, "RAG"].map((t) => (
               <span key={t}>
-                <InlineTech name={t} />
-                {i < HERO_STACK.length - 1 ? ", " : ""}
+                <span className="whitespace-nowrap">
+                  <InlineTech name={t} />,
+                </span>{" "}
               </span>
             ))}
-            , <InlineTech name="RAG" />, focused on{" "}
+            focused on{" "}
             <span className="text-accent">clean UX and real user impact</span>.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -109,8 +111,9 @@ export default function HeroCard() {
               <Download size={14} />
               Resume
             </SecondaryButton>
-            {/* ml-4 lines the first glyph up with the button label above once it wraps on mobile */}
-            <span className="ml-4 flex items-center gap-4 md:ml-2">
+            {/* ml-2 cancels the icons' -m-2 hit area, so the first glyph lines
+                up with the button edge above once it wraps on mobile */}
+            <span className="ml-2 flex items-center gap-4">
               <SocialIcon kind="github" href={SOCIALS.github} label="GitHub" />
               <SocialIcon kind="x" href={SOCIALS.x} label="X" />
               <SocialIcon
