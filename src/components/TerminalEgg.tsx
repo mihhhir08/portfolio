@@ -43,7 +43,7 @@ export default function TerminalEgg() {
         window.open(projects[p], "_blank");
       } else print("unknown project. try: " + Object.keys(projects).join(", "));
     } else if (name === "whoami")
-      print("Mihirsinh Chavda · software engineer.\nI ship AI products end to end.");
+      print("Mihirsinh Chavda, software engineer.\nI ship AI products end to end.");
     else if (name === "resume") {
       const a = document.createElement("a");
       a.href = "/resume.pdf";
@@ -104,7 +104,7 @@ export default function TerminalEgg() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) setOpen(false);
           }}
@@ -116,7 +116,7 @@ export default function TerminalEgg() {
             transition={{ duration: 0.15 }}
             role="dialog"
             aria-label="Terminal"
-            className="w-[min(560px,calc(100vw-32px))] overflow-hidden rounded-xl border border-hairline bg-surface font-mono text-xs backdrop-blur-md"
+            className="w-[min(560px,calc(100vw-32px))] overflow-hidden rounded-xl border border-hairline-bright bg-bg font-mono text-xs"
           >
             <div className="flex items-center gap-1.5 border-b border-hairline px-3 py-2 text-muted">
               <span className="h-2 w-2 rounded-full bg-status-archived/70" />

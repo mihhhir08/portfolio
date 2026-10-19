@@ -133,7 +133,7 @@ export default function CommandPalette() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 pt-[18vh] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 pt-[18vh]"
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) close();
           }}
@@ -145,7 +145,7 @@ export default function CommandPalette() {
             transition={{ duration: 0.15 }}
             role="dialog"
             aria-label="Command palette"
-            className="w-[min(520px,calc(100vw-32px))] overflow-hidden rounded-xl border border-hairline bg-surface backdrop-blur-md"
+            className="w-[min(520px,calc(100vw-32px))] overflow-hidden rounded-xl border border-hairline-bright bg-bg"
           >
             <input
               ref={inputRef}
@@ -174,7 +174,7 @@ export default function CommandPalette() {
                     }`}
                   >
                     {c.n}
-                    <span className="font-mono text-[10px] opacity-60">
+                    <span className="text-xs opacity-60">
                       {c.h}
                     </span>
                   </button>
